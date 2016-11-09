@@ -34,7 +34,7 @@ public class FirstProject {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
-            System.out.println("数据库数据成功获取！");
+            System.out.println("get data success！");
         }
     }
 }
