@@ -4,19 +4,23 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class FirstProject {
+public class FirstProject
+{
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException
+    {
         java.sql.Connection con;
         String driver = "com.mysql.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/study";
         String user = "root";
         String password = "password";
 
-        try {
+        try
+        {
             Class.forName(driver);
             con = DriverManager.getConnection(url, user, password);
-            if (!con.isClosed()) {
+            if (!con.isClosed())
+            {
                 System.out.println("Succeeded connetcing to the Database!");
             }
             java.sql.Statement statement = con.createStatement();
@@ -24,16 +28,19 @@ public class FirstProject {
             ResultSet rs = statement.executeQuery(sql);
             String name = null;
             String id = null;
-            while (rs.next()) {
+            while (rs.next())
+            {
                 name = rs.getString("name");
                 id = rs.getString("id");
                 System.out.println(id + "\t" + name);
             }
             rs.close();
             con.close();
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e)
+        {
             e.printStackTrace();
-        } finally {
+        } finally
+        {
             System.out.println("get data success！");
         }
     }
