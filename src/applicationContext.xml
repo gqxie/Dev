@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	   <!-- 启用注解注入 -->
+	   <context:annotation-config/>
+	   <!-- 启用自动扫描 -->
+	   <context:component-scan base-package="com.gqxie.bean"/>
+	   <!-- <bean id="me" class="com.briup.spring.Me"/>-->
+       <bean id="msg" class="com.gqxie.bean.MessageBean">
+            <property name ="name" value="root">
+            </property>
+            <property name ="age" value="18">
+            </property>
+            <property name ="birth" value="2017-06-03">
+            </property>
+            <property name ="friends">
+                <list>
+                    <value>tom</value>
+                    <value>jerry</value>
+                </list>
+            </property>
+            <property name ="cities">
+                <set>
+                    <value>北京</value>
+                </set>
+            </property>
+            <property name ="books">
+                <map>
+                    <entry key="1001" value="test"></entry>
+                </map>
+            </property>
+       </bean>
+       
+</beans>
