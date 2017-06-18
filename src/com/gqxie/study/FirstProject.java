@@ -10,6 +10,7 @@ import java.sql.SQLException;
 public class FirstProject
 {
 
+    //select from mysql
     public static void main(String[] args) throws SQLException
     {
         java.sql.Connection con;
