@@ -4,6 +4,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * This line is written on linux
+ */
 public class FirstProject
 {
 
