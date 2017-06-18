@@ -38,6 +38,7 @@ public class FirstProject
                 id = rs.getString("id");
                 System.out.println(id + "\t" + name);
             }
+            //need to modify
             rs.close();
             con.close();
         } catch (ClassNotFoundException e)
