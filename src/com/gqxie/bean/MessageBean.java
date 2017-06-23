@@ -6,14 +6,6 @@
  * Copyright (c) 2017, chenzhou1025@126.com All Rights Reserved.
  * 
  */
-/**
- * Project Name:SpringLearnning
- * File Name:Computer.java
- * Package Name:com.gqxie.bean
- * Date:2017年6月3日下午3:14:26
- * Copyright (c) 2017, chenzhou1025@126.com All Rights Reserved.
- * 
- */
 
 package com.gqxie.bean;
 
@@ -22,17 +14,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * ClassName:Computer <br/>
- * Function: TODO ADD FUNCTION. <br/>
- * Reason: TODO ADD REASON. <br/>
- * Date: 2017年6月3日 下午3:14:26 <br/>
- * 
- * @author xie
- * @version
- * @since JDK 1.6
- * @see
- */
 /**
  * ClassName: Computer <br/>
  * Function: TODO ADD FUNCTION. <br/>
