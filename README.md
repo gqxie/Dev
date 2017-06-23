@@ -1,2 +1,2 @@
 # Dev
-study for myself
+从零开始做网站
