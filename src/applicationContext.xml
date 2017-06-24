@@ -59,4 +59,12 @@
         <property name="url" value="jdbc:mysql://127.0.0.1:3309/dev">
         </property>
     </bean>
+    
+    <!-- 配置viewResolver -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="preffix" value="/">
+        </property>
+        <property name="suffix" value=".jsp">
+        </property>
+    </bean>
 </beans>
