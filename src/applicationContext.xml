@@ -14,7 +14,7 @@
     <!-- 启用注解注入 -->
     <context:annotation-config />
     <!-- 启用自动扫描 -->
-    <context:component-scan base-package="com.gqxie.bean" />
+    <context:component-scan base-package="com.gqxie"/>
 
     <!-- 配置handlermapping -->
     <bean id="handlermapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
@@ -39,6 +39,24 @@
         <property name="prefix" value="/WEB-INF/">
         </property>
         <property name="suffix" value=".jsp">
+        </property>
+    </bean>
+    
+    <!-- 定义jdbcTemplate -->
+    <bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dbcp">
+        </property>
+    </bean>
+    
+    <!-- DataSource数据源 -->
+    <bean id="dbcp" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="username" value="root">
+        </property>
+        <property name="password" value="password">
+        </property>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver">
+        </property>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3309/dev">
         </property>
     </bean>
 </beans>

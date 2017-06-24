@@ -3,7 +3,7 @@
  * File Name:HelloController.java  
  * Package Name:com.gqxie.controller  
  * Date:2017年6月24日上午6:16:49  
- * Copyright (c) 2017, chenzhou1025@126.com All Rights Reserved.  
+ * Copyright (c) 2017, xie.coder@gmail.com All Rights Reserved.  
  *  
 */
 
@@ -23,7 +23,7 @@ import org.springframework.web.servlet.mvc.Controller;
  * 
  * @author xie
  * @version
- * @since JDK 1.6
+ * @since JDK 1.8
  */
 public class HelloController implements Controller
 {
