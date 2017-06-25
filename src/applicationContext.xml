@@ -14,40 +14,68 @@
     <!-- 启用注解注入 -->
     <context:annotation-config />
     <!-- 启用自动扫描 -->
-    <context:component-scan base-package="com.gqxie"/>
+    <context:component-scan base-package="com.gqxie" />
 
     <!-- 配置handlermapping -->
-    <bean id="handlermapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-        <!-- 指定请求和controller对应关系 -->
+    <bean id="handlermapping"
+        class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
             <props>
-                <prop key="/hello.do">helloController</prop>
-                <prop key="/login.do">tologinController</prop>
+                <prop key="/login.do">loginController</prop>
             </props>
         </property>
     </bean>
-    
+
     <!-- 配置controller -->
-    <bean id="helloController" class="com.gqxie.controller.HelloController">
+    <bean id="tologinController" class="com.gqxie.controller.LoginController">
     </bean>
-    
-    <bean id="tologinController" class="com.gqxie.controller.ToLoginController">
-    </bean>
-    
+
+    <!-- 异常处理器 -->
+    <!-- <bean
+        class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.Exception">error</prop>
+            </props>
+        </property>
+    </bean> -->
+
     <!-- 配置viewresolver -->
-    <bean id="viewresolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <bean id="viewresolver"
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/">
         </property>
         <property name="suffix" value=".jsp">
         </property>
     </bean>
-    
+
     <!-- 定义jdbcTemplate -->
-    <bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
-        <property name="dataSource" ref="dbcp">
-        </property>
+    <!-- <bean id="template" class="org.springframework.jdbc.core.JdbcTemplate"> 
+        <property name="dataSource" ref="dbcp"> </property> </bean> -->
+
+    <!-- 定义mapperFactoryBean -->
+    <!-- <bean id="empDao" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+        <property name="mapperInterface" value="com.gqxie.dao.IEmpDao"></property> 
+        <property name="sqlSessionFactory" ref="ssf"></property> </bean> -->
+
+    <!-- 可以根据指定路径批量生成Dao实现 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 扫描com.gqxie.dao包下的所有接口，批量生成实现 -->
+        <property name="basePackage" value="com.gqxie.dao"></property>
+        <!-- 带了该类型注解的才生成实现 -->
+        <!-- <property name="annotationClass" value="com.gqxie.annotation.MyBatisDao"></property> -->
+        <!-- 可以自动注入sqlSessionFactory -->
+        <!-- <property name="sqlSessionFactory" ref="ssf"></property> -->
     </bean>
-    
+
+    <!-- 创建sqlSessionFactory -->
+    <bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 注入dataSource -->
+        <property name="dataSource" ref="dbcp"></property>
+        <!-- 注入sql语句文件 -->
+        <property name="mapperLocations" value="classpath:com/gqxie/sql/*.xml"></property>
+    </bean>
+
     <!-- DataSource数据源 -->
     <bean id="dbcp" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="username" value="root">
@@ -57,14 +85,6 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver">
         </property>
         <property name="url" value="jdbc:mysql://127.0.0.1:3309/dev">
-        </property>
-    </bean>
-    
-    <!-- 配置viewResolver -->
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="preffix" value="/">
-        </property>
-        <property name="suffix" value=".jsp">
         </property>
     </bean>
 </beans>

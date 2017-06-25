@@ -9,13 +9,11 @@
 
 package com.gqxie.test;
 
-import java.util.List;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.gqxie.dao.impl.EmpDaoImpl;
-import com.gqxie.entity.Emp;
+import com.gqxie.dao.IUserDao;
+import com.gqxie.entity.User;
 
 /**
  * ClassName:TestEmpDao <br/>
@@ -28,25 +26,22 @@ import com.gqxie.entity.Emp;
  * @since JDK 1.8
  * @see
  */
-public class TestEmpDao
+public class TestUserDao
 {
     @SuppressWarnings("resource")
     public static void main(String[] args)
     {
         String conf = "applicationContext.xml";
         ApplicationContext ac = new ClassPathXmlApplicationContext(conf);
-        EmpDaoImpl empDao = ac.getBean("empDao", EmpDaoImpl.class);
+        IUserDao userDao = ac.getBean("IUserDao", IUserDao.class);
         /*
-         * Emp emp = new Emp();
-         * emp.setName("spring");
-         * emp.setSalary(15000.0);
-         * emp.setAge(20);
-         * empDao.save(emp);
+         * List<User> list = userDao.findAll();
+         * for (User user : list)
+         * {
+         * System.out.println(user);
+         * }
          */
-        List<Emp> list = empDao.findAll();
-        for (Emp emp : list)
-        {
-            System.out.println(emp);
-        }
+        User user = userDao.verify("abc@234.com", "123456");
+        System.out.println(user);
     }
 }

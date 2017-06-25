@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <h2>Spring Web MVC入门示例</h2>
-    <h3>${msg}</h3>
+    <h2>服务器忙，请稍后重试</h2>
 </body>
 </html>
