@@ -8,3 +8,5 @@
 `.newCacheConfigurationBuilder(String.class, Integer.class, ResourcePoolsBuilder.heap(500000L))`
 `.withExpiry(Expirations.timeToLiveExpiration(Duration.of(3600L, TimeUnit.SECONDS)))`
 `.build();`
+
+`&#8212;` is the decimal-encoded equivalent of `&mdash;`.
