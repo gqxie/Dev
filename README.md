@@ -2,6 +2,7 @@
 近期计划
 *   引入ehcache
 *   引入spring boot
+
 `cacheManager = CacheManagerBuilder.newCacheManagerBuilder().build(true);`
 `CacheConfiguration<String, Integer> cacheConfiguration = CacheConfigurationBuilder`
 `.newCacheConfigurationBuilder(String.class, Integer.class, ResourcePoolsBuilder.heap(500000L))`
