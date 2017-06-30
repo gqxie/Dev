@@ -27,7 +27,7 @@
     </bean>
 
     <!-- 配置controller -->
-    <bean id="tologinController" class="com.gqxie.controller.LoginController">
+    <bean id="loginController" class="com.gqxie.controller.LoginController">
     </bean>
 
     <!-- 异常处理器 -->
@@ -73,7 +73,7 @@
         <!-- 注入dataSource -->
         <property name="dataSource" ref="dbcp"></property>
         <!-- 注入sql语句文件 -->
-        <property name="mapperLocations" value="classpath:com/gqxie/sql/*.xml"></property>
+        <property name="mapperLocations" value="classpath:mapping/*.xml"></property>
     </bean>
 
     <!-- DataSource数据源 -->

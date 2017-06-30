@@ -22,6 +22,8 @@ package com.gqxie.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,9 +37,12 @@ public class LoginController
     @Resource
     private IUserDao userDao;
 
+    private static Logger LOG = LogManager.getLogger("RollingFile");
+
     @RequestMapping("/login.do")
     public ModelAndView execute(HttpServletRequest request)
     {
+        LOG.error("enter login verify...");
         String account = request.getParameter("username");
         String password = request.getParameter("password");
         User user = userDao.verify(account, password);
@@ -46,6 +51,7 @@ public class LoginController
         String view = null == user ? "login" : "success";
         mav.setViewName(view);
         mav.getModel().put("msg", msg);
+        LOG.error("end login verify...");
         return mav;
     }
 
