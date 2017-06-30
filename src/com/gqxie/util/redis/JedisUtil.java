@@ -24,9 +24,9 @@ public class JedisUtil
     static
     {
         JedisPoolConfig config = new JedisPoolConfig();
-        // config.setMaxActive(JRedisPoolConfig.MAX_ACTIVE);
+        config.setMaxTotal(JRedisPoolConfig.MAX_ACTIVE);
         config.setMaxIdle(JRedisPoolConfig.MAX_IDLE);
-        // config.setMaxWait(JRedisPoolConfig.MAX_WAIT);
+        config.setMaxWaitMillis(JRedisPoolConfig.MAX_WAIT);
         config.setTestOnBorrow(JRedisPoolConfig.TEST_ON_BORROW);
         config.setTestOnReturn(JRedisPoolConfig.TEST_ON_RETURN);
         // redis如果设置了密码：

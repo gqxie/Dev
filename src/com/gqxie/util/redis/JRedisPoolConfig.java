@@ -41,11 +41,11 @@ public class JRedisPoolConfig
     public static boolean TEST_ON_BORROW;
     public static boolean TEST_ON_RETURN;
 
-    static
+/*    static
     {
         init();
     }
-
+*/
     public static void init()
     {
         try
