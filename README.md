@@ -1,12 +1,5 @@
 # Dev
 近期计划
-*   引入ehcache
-*   引入spring boot
+*   引入redis
+*   引入apache shiro
 
-`cacheManager = CacheManagerBuilder.newCacheManagerBuilder().build(true);`
-`CacheConfiguration<String, Integer> cacheConfiguration = CacheConfigurationBuilder`
-`.newCacheConfigurationBuilder(String.class, Integer.class, ResourcePoolsBuilder.heap(500000L))`
-`.withExpiry(Expirations.timeToLiveExpiration(Duration.of(3600L, TimeUnit.SECONDS)))`
-`.build();`
-
-`&#8212;` is the decimal-encoded equivalent of `&mdash;`.
