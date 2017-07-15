@@ -26,9 +26,9 @@ public class JedisUtil
         JedisPoolConfig config = new JedisPoolConfig();
         config.setMaxTotal(JRedisPoolConfig.MAX_ACTIVE);
         config.setMaxIdle(JRedisPoolConfig.MAX_IDLE);
-        /*config.setMaxWaitMillis(JRedisPoolConfig.MAX_WAIT);
+        config.setMaxWaitMillis(JRedisPoolConfig.MAX_WAIT);
         config.setTestOnBorrow(JRedisPoolConfig.TEST_ON_BORROW);
-        config.setTestOnReturn(JRedisPoolConfig.TEST_ON_RETURN);*/
+        config.setTestOnReturn(JRedisPoolConfig.TEST_ON_RETURN);
         // redis如果设置了密码：
         jedisPool = new JedisPool(config, JRedisPoolConfig.REDIS_IP, JRedisPoolConfig.REDIS_PORT, 10000,
                 JRedisPoolConfig.REDIS_PASSWORD);
@@ -50,6 +50,7 @@ public class JedisUtil
     /**
      * 回收jedis
      */
+    @SuppressWarnings("deprecation")
     public static void returnJedis(Jedis jedis)
     {
         if (jedis != null)
