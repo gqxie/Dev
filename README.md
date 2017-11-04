@@ -1,5 +1,5 @@
 # Dev
 近期计划
-*   引入redis
-*   引入apache shiro
+*   引入lombok
+*   引入jmstemplate + activemq
 
