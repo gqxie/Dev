@@ -9,25 +9,8 @@
 
 package com.gqxie.util.redis;
 
-/**  
- * ClassName:JRedisPoolConfig <br/>  
- * Function: TODO ADD FUNCTION. <br/>  
- * Reason:   TODO ADD REASON. <br/>  
- * Date:     2017年6月30日 下午1:09:20 <br/>  
- * @author   xie  
- * @version    
- * @since    JDK 1.8  
- * @see        
- */
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.Properties;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.jfinal.kit.PathKit;
 
 public class JRedisPoolConfig
 {
@@ -48,7 +31,7 @@ public class JRedisPoolConfig
 */
     public static void init()
     {
-        try
+        /*try
         {
             String fullFile = PathKit.getWebRootPath() + File.separator + "WEB-INF" + File.separator + "classes"
                     + File.separator + "redis.properties";
@@ -77,6 +60,6 @@ public class JRedisPoolConfig
         } catch (Exception e)
         {
             e.printStackTrace();
-        }
+        }*/
     }
 }
