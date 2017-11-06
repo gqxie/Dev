@@ -31,25 +31,25 @@ public class User implements Serializable
      */
     private static final long serialVersionUID = 3427446400328367569L;
 
-    private Long userID;
+    private Long              userID;
 
-    private String account;
+    private String            account;
 
-    private String pwd;
+    private String            pwd;
 
-    private Integer gender;
+    private Integer           gender;
 
-    private Integer age;
+    private Integer           age;
 
-    private Integer state;
+    private Integer           state;
 
-    private Date birthDay;
+    private Date              birthDay;
 
-    private String email;
+    private String            email;
 
-    private String phone;
+    private String            phone;
 
-    private String nickName;
+    private String            nickName;
 
     /**
      * userID.
@@ -65,7 +65,8 @@ public class User implements Serializable
     /**
      * userID.
      * 
-     * @param userID the userID to set
+     * @param userID
+     *            the userID to set
      * @since JDK 1.8
      */
     public void setUserID(Long userID)
@@ -87,7 +88,8 @@ public class User implements Serializable
     /**
      * account.
      * 
-     * @param account the account to set
+     * @param account
+     *            the account to set
      * @since JDK 1.8
      */
     public void setAccount(String account)
@@ -109,7 +111,8 @@ public class User implements Serializable
     /**
      * pwd.
      * 
-     * @param pwd the pwd to set
+     * @param pwd
+     *            the pwd to set
      * @since JDK 1.8
      */
     public void setPwd(String pwd)
@@ -131,7 +134,8 @@ public class User implements Serializable
     /**
      * gender.
      * 
-     * @param gender the gender to set
+     * @param gender
+     *            the gender to set
      * @since JDK 1.8
      */
     public void setGender(Integer gender)
@@ -153,7 +157,8 @@ public class User implements Serializable
     /**
      * age.
      * 
-     * @param age the age to set
+     * @param age
+     *            the age to set
      * @since JDK 1.8
      */
     public void setAge(Integer age)
@@ -175,7 +180,8 @@ public class User implements Serializable
     /**
      * state.
      * 
-     * @param state the state to set
+     * @param state
+     *            the state to set
      * @since JDK 1.8
      */
     public void setState(Integer state)
@@ -197,7 +203,8 @@ public class User implements Serializable
     /**
      * birthDay.
      * 
-     * @param birthDay the birthDay to set
+     * @param birthDay
+     *            the birthDay to set
      * @since JDK 1.8
      */
     public void setBirthDay(Date birthDay)
@@ -219,7 +226,8 @@ public class User implements Serializable
     /**
      * email.
      * 
-     * @param email the email to set
+     * @param email
+     *            the email to set
      * @since JDK 1.8
      */
     public void setEmail(String email)
@@ -241,7 +249,8 @@ public class User implements Serializable
     /**
      * phone.
      * 
-     * @param phone the phone to set
+     * @param phone
+     *            the phone to set
      * @since JDK 1.8
      */
     public void setPhone(String phone)
@@ -263,7 +272,8 @@ public class User implements Serializable
     /**
      * nickName.
      * 
-     * @param nickName the nickName to set
+     * @param nickName
+     *            the nickName to set
      * @since JDK 1.8
      */
     public void setNickName(String nickName)

@@ -25,7 +25,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.gqxie.entity.User;
 
-public interface IUserDao
+public interface UserDao
 {
     List<User> findAll();
 

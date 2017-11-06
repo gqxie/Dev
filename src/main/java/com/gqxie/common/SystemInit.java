@@ -9,9 +9,16 @@
 
 package com.gqxie.common;
 
+import java.util.List;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.gqxie.entity.User;
+import com.gqxie.service.UserService;
 import com.gqxie.util.ehcache.EhcacheUtil;
 import com.gqxie.util.redis.JRedisPoolConfig;
 
@@ -26,11 +33,22 @@ import com.gqxie.util.redis.JRedisPoolConfig;
  * @since JDK 1.8
  * @see
  */
+@Component
 public class SystemInit implements ServletContextListener
 {
+    @Autowired
+    private UserService       userService;
+
+    private static SystemInit systemInit;
+
     public void contextDestroyed(ServletContextEvent arg0)
     {
+    }
 
+    public void init()
+    {
+        systemInit = this;
+        addAllUserToCache();
     }
 
     public void contextInitialized(ServletContextEvent arg0)
@@ -42,9 +60,20 @@ public class SystemInit implements ServletContextListener
             JRedisPoolConfig.init();
             // 初始化ehcache
             EhcacheUtil.init();
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
-            System.out.println("system init error!");
+            e.printStackTrace();
+        }
+
+    }
+
+    private void addAllUserToCache()
+    {
+        List<User> list = systemInit.userService.findAll();
+        for (User user : list)
+        {
+            EhcacheUtil.put(user.getUserID(), user);
         }
 
     }
