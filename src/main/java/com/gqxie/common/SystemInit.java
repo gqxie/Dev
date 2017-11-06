@@ -20,7 +20,6 @@ import org.springframework.stereotype.Component;
 import com.gqxie.entity.User;
 import com.gqxie.service.UserService;
 import com.gqxie.util.ehcache.EhcacheUtil;
-import com.gqxie.util.redis.JRedisPoolConfig;
 
 /**
  * ClassName:SystemInit <br/>
@@ -56,8 +55,6 @@ public class SystemInit implements ServletContextListener
 
         try
         {
-            // 初始化jedis
-            JRedisPoolConfig.init();
             // 初始化ehcache
             EhcacheUtil.init();
         }
