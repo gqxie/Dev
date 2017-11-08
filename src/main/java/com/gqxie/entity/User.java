@@ -22,6 +22,8 @@ package com.gqxie.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 public class User implements Serializable
 {
     /**
@@ -51,6 +53,7 @@ public class User implements Serializable
 
     private String            phone;
 
+    @NotNull(message = "昵称不能为空")
     private String            nickName;
 
     public Long getId()

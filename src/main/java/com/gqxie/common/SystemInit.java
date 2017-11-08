@@ -82,6 +82,7 @@ public class SystemInit implements ServletContextListener
         List<User> list = userService.findAll();
         for (User user : list)
         {
+            user.setPwd(AESUtil.decrypt(user.getPwd()));
             EhcacheUtil.put(user.getId(), user);
         }
     }

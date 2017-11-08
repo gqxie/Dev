@@ -2,11 +2,14 @@ package com.gqxie.util.encrypt;
 
 import java.security.Key;
 
+import org.apache.log4j.Logger;
 import org.apache.shiro.codec.Hex;
 import org.apache.shiro.crypto.AesCipherService;
 
-public class AESUtil
+public final class AESUtil
 {
+
+    private static Logger           logger = Logger.getLogger(AESUtil.class);
 
     private static Key              key;
 
@@ -23,9 +26,19 @@ public class AESUtil
         return aesCipherService.encrypt(text.getBytes(), key.getEncoded()).toHex();
     }
 
-    public static String decrypt(String encText)
+    public static String decrypt(String encryText)
     {
-        return new String(aesCipherService.decrypt(Hex.decode(encText), key.getEncoded()).getBytes());
+        String source = encryText;
+        try
+        {
+            source = new String(aesCipherService.decrypt(Hex.decode(encryText), key.getEncoded()).getBytes());
+        }
+        catch (Exception e)
+        {
+            logger.error("decrypt text error...");
+        }
+
+        return source;
     }
 
     public static Key getKey()
@@ -36,6 +49,11 @@ public class AESUtil
     public static void setKey(Key key)
     {
         AESUtil.key = key;
+    }
+
+    private AESUtil()
+    {
+
     }
 
 }
