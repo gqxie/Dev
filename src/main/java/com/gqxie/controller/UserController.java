@@ -31,15 +31,16 @@ import org.springframework.web.servlet.ModelAndView;
 import com.gqxie.entity.User;
 import com.gqxie.service.UserService;
 import com.gqxie.util.ehcache.EhcacheUtil;
+import com.gqxie.util.encrypt.AESUtil;
 
 @RequestMapping("/user")
 @Controller
-public class LoginController
+public class UserController
 {
     @Autowired
     private UserService userService;
 
-    private Logger      logger = Logger.getLogger(LoginController.class);
+    private Logger      logger = Logger.getLogger(UserController.class);
 
     /**
      * 用户登录
@@ -69,13 +70,13 @@ public class LoginController
      * @param request
      * @return
      */
-    @RequestMapping("getUserByUserID")
+    @RequestMapping("getUserByID")
     @ResponseBody
-    private Object getUserByUserID(HttpServletRequest request)
+    private Object getUserByID(HttpServletRequest request)
     {
-        Long userID = Long.valueOf(request.getParameter("userID"));
-        User user = EhcacheUtil.get(userID);
-        return null != user ? user : userService.findByUserID(userID);
+        Long id = Long.valueOf(request.getParameter("id"));
+        User user = EhcacheUtil.get(id);
+        return null != user ? user : userService.getUserByID(id);
     }
 
     /**
@@ -89,6 +90,18 @@ public class LoginController
     private Object findAll(HttpServletRequest request)
     {
         return userService.findAll();
+    }
+
+    @RequestMapping("addUser")
+    @ResponseBody
+    private Object addUser(HttpServletRequest request)
+    {
+        User user = new User();
+        user.setAccount(String.valueOf(request.getParameter(User.Fields.account.name())));
+        String pwd = String.valueOf(request.getParameter(User.Fields.pwd.name()));
+        user.setPwd(AESUtil.encrypt(pwd));
+        userService.addUser(user);
+        return user.getId();
     }
 
 }

@@ -8,9 +8,11 @@ public interface UserService
 {
     List<User> findAll();
 
-    User findByUserID(Long userID);
+    User getUserByID(Long id);
 
     User findByAccount(String account);
 
     User verify(String account, String pwd);
+
+    Integer addUser(User user);
 }

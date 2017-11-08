@@ -29,9 +29,11 @@ public interface UserDao
 {
     List<User> findAll();
 
-    User findByUserID(Long userID);
+    User findByID(Long id);
 
     User findByAccount(String account);
 
-    User verify(@Param("account")String account, @Param("pwd")String pwd);
+    User verify(@Param("account") String account, @Param("pwd") String pwd);
+
+    Integer addUser(User user);
 }

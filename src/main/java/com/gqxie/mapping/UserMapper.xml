@@ -8,10 +8,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select * from t_user;
     </select>
 
-    <select id="findByUserID" resultType="com.gqxie.entity.User"
+    <select id="findByID" resultType="com.gqxie.entity.User"
         parameterType="long">
         select *
-        from t_user where userID = #{userID};
+        from t_user where id = #{id};
     </select>
 
     <select id="findByAccount" resultType="com.gqxie.entity.User"
@@ -21,9 +21,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <select id="verify" parameterType="String" resultType="com.gqxie.entity.User">
-        select *
-        from t_user where
+        select
+        * from t_user where
         account = #{account} and pwd=#{pwd};
     </select>
+
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="id"
+        parameterType="com.gqxie.entity.User">
+        insert into t_user(account,pwd)
+        values(#{account},#{pwd})
+    </insert>
 
 </mapper>

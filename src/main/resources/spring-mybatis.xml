@@ -33,6 +33,10 @@
         <property name="minIdle" value="${minIdle}"></property>
         <!-- 获取连接最大等待时间 -->
         <property name="maxWait" value="${maxWait}"></property>
+        <!-- 事务是否自动提交 -->
+        <property name="defaultAutoCommit">
+            <value>true</value>
+        </property>
     </bean>
 
     <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->

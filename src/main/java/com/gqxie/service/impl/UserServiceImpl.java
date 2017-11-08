@@ -2,6 +2,8 @@ package com.gqxie.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import com.gqxie.entity.User;
 import com.gqxie.service.UserService;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService
 {
 
@@ -23,9 +26,9 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public User findByUserID(Long userID)
+    public User getUserByID(Long id)
     {
-        return userDao.findByUserID(userID);
+        return userDao.findByID(id);
     }
 
     @Override
@@ -38,6 +41,12 @@ public class UserServiceImpl implements UserService
     public User verify(String account, String pwd)
     {
         return userDao.verify(account, pwd);
+    }
+    
+    @Override
+    public Integer addUser(User user)
+    {
+        return userDao.addUser(user);
     }
 
 }

@@ -31,6 +31,8 @@ public class User implements Serializable
      */
     private static final long serialVersionUID = 3427446400328367569L;
 
+    private Long              id;
+
     private Long              userID;
 
     private String            account;
@@ -50,6 +52,16 @@ public class User implements Serializable
     private String            phone;
 
     private String            nickName;
+
+    public Long getId()
+    {
+        return id;
+    }
+
+    public void setId(Long id)
+    {
+        this.id = id;
+    }
 
     /**
      * userID.
@@ -291,6 +303,11 @@ public class User implements Serializable
     {
         return "User [userID=" + userID + ", account=" + account + ", gender=" + gender + ", nickName=" + nickName
                 + "]";
+    }
+
+    public enum Fields
+    {
+        userID, account, pwd, gender, age, state, birthDay, email, phone, nickName
     }
 
 }
