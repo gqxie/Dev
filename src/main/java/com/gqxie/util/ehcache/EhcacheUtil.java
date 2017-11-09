@@ -7,7 +7,11 @@ import org.ehcache.config.builders.CacheManagerBuilder;
 import org.ehcache.config.builders.ResourcePoolsBuilder;
 
 import com.gqxie.entity.User;
-
+/**
+ * 
+ * @author gqxie
+ *
+ */
 public class EhcacheUtil
 {
     private static Cache<Long, User> myCache;

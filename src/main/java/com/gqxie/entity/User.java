@@ -310,7 +310,17 @@ public class User implements Serializable
 
     public enum Fields
     {
-        userID, account, pwd, gender, age, state, birthDay, email, phone, nickName
+        //用户ID
+        userID,
+        account,
+        pwd,
+        gender,
+        age,
+        state,
+        birthDay,
+        email,
+        phone,
+        nickName
     }
 
 }

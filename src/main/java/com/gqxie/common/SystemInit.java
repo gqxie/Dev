@@ -27,7 +27,7 @@ import org.springframework.stereotype.Component;
 import com.gqxie.entity.User;
 import com.gqxie.service.UserService;
 import com.gqxie.util.ehcache.EhcacheUtil;
-import com.gqxie.util.encrypt.AESUtil;
+import com.gqxie.util.encrypt.AesUtil;
 
 /**
  * ClassName:SystemInit <br/>
@@ -50,6 +50,7 @@ public class SystemInit implements ServletContextListener
     @Autowired
     private UserService         userService;
 
+    @Override
     public void contextDestroyed(ServletContextEvent arg0)
     {
     }
@@ -62,6 +63,7 @@ public class SystemInit implements ServletContextListener
         addAllUserToCache();
     }
 
+    @Override
     public void contextInitialized(ServletContextEvent arg0)
     {
 
@@ -82,7 +84,7 @@ public class SystemInit implements ServletContextListener
         List<User> list = userService.findAll();
         for (User user : list)
         {
-            user.setPwd(AESUtil.decrypt(user.getPwd()));
+            user.setPwd(AesUtil.decrypt(user.getPwd()));
             EhcacheUtil.put(user.getId(), user);
         }
     }
@@ -98,7 +100,7 @@ public class SystemInit implements ServletContextListener
             fis = new FileInputStream(aesKeyFile);
             ois = new ObjectInputStream(fis);
             Key key = (Key) ois.readObject();
-            AESUtil.setKey(key);
+            AesUtil.setKey(key);
             logger.info("load aes key success...");
         }
         catch (FileNotFoundException e)

@@ -31,7 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.gqxie.entity.User;
 import com.gqxie.service.UserService;
 import com.gqxie.util.ehcache.EhcacheUtil;
-import com.gqxie.util.encrypt.AESUtil;
+import com.gqxie.util.encrypt.AesUtil;
 
 @RequestMapping("/user")
 @Controller
@@ -99,7 +99,7 @@ public class UserController
         User user = new User();
         user.setAccount(String.valueOf(request.getParameter(User.Fields.account.name())));
         String pwd = String.valueOf(request.getParameter(User.Fields.pwd.name()));
-        user.setPwd(AESUtil.encrypt(pwd));
+        user.setPwd(AesUtil.encrypt(pwd));
         userService.addUser(user);
         return user.getId();
     }

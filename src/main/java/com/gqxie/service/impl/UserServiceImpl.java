@@ -2,17 +2,21 @@ package com.gqxie.service.impl;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gqxie.dao.UserDao;
 import com.gqxie.entity.User;
 import com.gqxie.service.UserService;
 
+/**
+ * 
+ * @author gqxie
+ *
+ */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class UserServiceImpl implements UserService
 {
 
@@ -42,7 +46,7 @@ public class UserServiceImpl implements UserService
     {
         return userDao.verify(account, pwd);
     }
-    
+
     @Override
     public Integer addUser(User user)
     {
