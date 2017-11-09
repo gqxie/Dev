@@ -16,7 +16,7 @@ import com.gqxie.entity.User;
 public class ValidateTest
 {
 
-    @Test
+    /*@Test
     public void validateTest()
     {
         User user = new User();
@@ -41,5 +41,5 @@ public class ValidateTest
             messageList.add(constraintViolation.getMessage());
         }
         return messageList;
-    }
+    }*/
 }
