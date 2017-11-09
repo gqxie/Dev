@@ -10,7 +10,7 @@ public class EncryptTest
 {
 
     @Test
-    public void main(String[] args) throws Exception
+    public void test() throws Exception
     {
         // TODO Auto-generated method stub
         /*String account = "xie";
