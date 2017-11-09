@@ -4,11 +4,13 @@ import java.security.Key;
 
 import org.apache.shiro.codec.Hex;
 import org.apache.shiro.crypto.AesCipherService;
+import org.junit.Test;
 
 public class EncryptTest
 {
 
-    public static void main(String[] args) throws Exception
+    @Test
+    public void main(String[] args) throws Exception
     {
         // TODO Auto-generated method stub
         /*String account = "xie";
