@@ -5,6 +5,7 @@ import java.security.Key;
 import org.apache.log4j.Logger;
 import org.apache.shiro.codec.Hex;
 import org.apache.shiro.crypto.AesCipherService;
+
 /**
  * 
  * @author gqxie
@@ -39,7 +40,7 @@ public final class AesUtil
         }
         catch (Exception e)
         {
-            logger.error("decrypt text error...");
+            logger.error("decrypt text failed,return origin value.");
         }
 
         return source;

@@ -15,7 +15,7 @@
     <!-- 系统初始化 -->
     <bean id="systemInit" class="com.gqxie.common.SystemInit"
         init-method="init"></bean>
-        
+
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
     <bean id="mappingJacksonHttpMessageConverter"
         class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
