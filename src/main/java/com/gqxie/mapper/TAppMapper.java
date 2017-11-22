@@ -1,4 +1,4 @@
-package com.gqxie.dao;
+package com.gqxie.mapper;
 
 import com.gqxie.entity.TApp;
 import com.gqxie.entity.TAppExample;

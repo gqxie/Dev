@@ -7,7 +7,7 @@
  *  
 */
 
-package com.gqxie.dao;
+package com.gqxie.mapper;
 /**  
  * ClassName:IUserDao <br/>  
  * Function: TODO ADD FUNCTION. <br/>  
@@ -25,7 +25,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.gqxie.entity.User;
 
-public interface UserDao
+public interface TUserMapper
 {
     /**
      * 获取所有用户

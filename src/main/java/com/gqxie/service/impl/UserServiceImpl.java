@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gqxie.dao.UserDao;
 import com.gqxie.entity.User;
+import com.gqxie.mapper.TUserMapper;
 import com.gqxie.service.UserService;
 
 /**
@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService
 {
 
     @Autowired
-    private UserDao userDao;
+    private TUserMapper userDao;
 
     @Override
     public List<User> findAll()
