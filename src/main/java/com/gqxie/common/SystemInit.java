@@ -73,7 +73,7 @@ public class SystemInit implements ServletContextListener
         }
         catch (Exception e)
         {
-            logger.error("init ehcache error!");
+            logger.error("init ehcache error!", e);
             e.printStackTrace();
         }
 
@@ -105,17 +105,17 @@ public class SystemInit implements ServletContextListener
         }
         catch (FileNotFoundException e)
         {
-            logger.error("aes key file not found.");
+            logger.error("aes key file not found.", e);
             e.printStackTrace();
         }
         catch (ClassNotFoundException e)
         {
-            logger.error("load aes key failed.");
+            logger.error("load aes key failed.", e);
             e.printStackTrace();
         }
         catch (IOException e)
         {
-            logger.error("load aes key failed.");
+            logger.error("load aes key failed.", e);
             e.printStackTrace();
         }
         finally
