@@ -60,6 +60,8 @@
         <property name="removeAbandonedTimeout" value="${removeAbandonedTimeout}" />
         <!-- 关闭 abanded 连接时输出错误日志 -->
         <property name="logAbandoned" value="${logAbandoned}" />
+        <property name="connectionProperties"
+            value="config.file=classpath:jdbc.properties;config.decrypt=true;config.decrypt.key=${publickey}" />
     </bean>
 
     <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
