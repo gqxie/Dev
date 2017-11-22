@@ -9,8 +9,12 @@
                         http://www.springframework.org/schema/context/spring-context-3.1.xsd  
                         http://www.springframework.org/schema/mvc  
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
-    <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
-    <context:component-scan base-package="com.gqxie.controller" />
+    <!-- 指定Sping组件扫描的基本包路径 -->
+    <context:component-scan base-package="com.gqxie.controller">
+        <!-- 这里只扫描Controller，不可重复加载Service -->
+        <context:include-filter type="annotation"
+            expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
 
     <!-- 系统初始化 -->
     <bean id="systemInit" class="com.gqxie.common.SystemInit"

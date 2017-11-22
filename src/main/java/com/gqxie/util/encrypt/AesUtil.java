@@ -40,7 +40,7 @@ public final class AesUtil
         }
         catch (Exception e)
         {
-            logger.warn("decrypt text failed,return origin value.", e);
+            logger.warn("decrypt text failed,return origin value.");
         }
 
         return source;
