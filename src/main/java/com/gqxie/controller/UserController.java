@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @RequestMapping("/user")
 @Controller
@@ -46,7 +47,8 @@ public class UserController
      * @return
      */
     @RequestMapping("/login")
-    public ModelAndView execute(HttpServletRequest request)
+    @ResponseBody
+    public ModelAndView execute(HttpServletRequest request, HttpServletResponse response)
     {
         logger.warn("login begin...");
         String account = request.getParameter("username");
