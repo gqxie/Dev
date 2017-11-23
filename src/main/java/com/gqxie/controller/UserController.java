@@ -48,10 +48,10 @@ public class UserController
      * @param request
      * @return
      */
-    @RequestMapping("/login.do")
+    @RequestMapping("/login")
     public ModelAndView execute(HttpServletRequest request)
     {
-        logger.warn("login.do begin...");
+        logger.warn("login begin...");
         String account = request.getParameter("username");
         String password = request.getParameter("password");
         User user = userService.verify(account, password);
@@ -60,7 +60,7 @@ public class UserController
         String view = null == user ? "login" : "success";
         mav.setViewName(view);
         mav.getModel().put("msg", msg);
-        logger.warn("login.do end...");
+        logger.warn("login end...");
         return mav;
     }
 
