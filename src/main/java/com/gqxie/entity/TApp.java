@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author 
+ * @author
  */
-public class TApp implements Serializable {
+public class TApp implements Serializable
+{
     private Integer id;
 
     private String appname;
@@ -19,67 +20,86 @@ public class TApp implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public Integer getId()
+    {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Integer id)
+    {
         this.id = id;
     }
 
-    public String getAppname() {
+    public String getAppname()
+    {
         return appname;
     }
 
-    public void setAppname(String appname) {
+    public void setAppname(String appname)
+    {
         this.appname = appname;
     }
 
-    public String getDescription() {
+    public String getDescription()
+    {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(String description)
+    {
         this.description = description;
     }
 
-    public Date getCreatetime() {
+    public Date getCreatetime()
+    {
         return createtime;
     }
 
-    public void setCreatetime(Date createtime) {
+    public void setCreatetime(Date createtime)
+    {
         this.createtime = createtime;
     }
 
-    public Date getUpdatetime() {
+    public Date getUpdatetime()
+    {
         return updatetime;
     }
 
-    public void setUpdatetime(Date updatetime) {
+    public void setUpdatetime(Date updatetime)
+    {
         this.updatetime = updatetime;
     }
 
     @Override
-    public boolean equals(Object that) {
-        if (this == that) {
+    public boolean equals(Object that)
+    {
+        if (this == that)
+        {
             return true;
         }
-        if (that == null) {
+        if (that == null)
+        {
             return false;
         }
-        if (getClass() != that.getClass()) {
+        if (getClass() != that.getClass())
+        {
             return false;
         }
         TApp other = (TApp) that;
-        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getAppname() == null ? other.getAppname() == null : this.getAppname().equals(other.getAppname()))
-            && (this.getDescription() == null ? other.getDescription() == null : this.getDescription().equals(other.getDescription()))
-            && (this.getCreatetime() == null ? other.getCreatetime() == null : this.getCreatetime().equals(other.getCreatetime()))
-            && (this.getUpdatetime() == null ? other.getUpdatetime() == null : this.getUpdatetime().equals(other.getUpdatetime()));
+        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId())) && (
+                this.getAppname() == null ? other.getAppname() == null : this.getAppname().equals(other.getAppname()))
+                && (this.getDescription() == null ?
+                other.getDescription() == null :
+                this.getDescription().equals(other.getDescription())) && (this.getCreatetime() == null ?
+                other.getCreatetime() == null :
+                this.getCreatetime().equals(other.getCreatetime())) && (this.getUpdatetime() == null ?
+                other.getUpdatetime() == null :
+                this.getUpdatetime().equals(other.getUpdatetime()));
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
@@ -91,7 +111,8 @@ public class TApp implements Serializable {
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");

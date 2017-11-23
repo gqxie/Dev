@@ -1,29 +1,26 @@
-/**  
- * Project Name:Dev  
- * File Name:IUserDao.java  
- * Package Name:com.gqxie.dao  
- * Date:2017年6月25日上午9:01:47  
- * Copyright (c) 2017, xie.coder@gmail.com All Rights Reserved.  
- *  
-*/
-
-package com.gqxie.mapper;
-/**  
- * ClassName:IUserDao <br/>  
- * Function: TODO ADD FUNCTION. <br/>  
- * Reason:   TODO ADD REASON. <br/>  
- * Date:     2017年6月25日 上午9:01:47 <br/>  
- * @author   xie  
- * @version    
- * @since    JDK 1.8  
- * @see        
+/**
+ * Project Name:Dev
+ * File Name:IUserDao.java
+ * Package Name:com.gqxie.dao
+ * Date:2017年6月25日上午9:01:47
+ * Copyright (c) 2017, xie.coder@gmail.com All Rights Reserved.
  */
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
+package com.gqxie.mapper;
+/**
+ * ClassName:IUserDao <br/>
+ * Date:     2017年6月25日 上午9:01:47 <br/>
+ *
+ * @author xie
+ * @version
+ * @see
+ * @since JDK 1.8
+ */
 
 import com.gqxie.entity.User;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface TUserMapper
 {

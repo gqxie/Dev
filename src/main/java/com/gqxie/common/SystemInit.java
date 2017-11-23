@@ -1,14 +1,23 @@
-/**  
- * Project Name:Dev  
- * File Name:SystemInit.java  
- * Package Name:com.gqxie.common  
- * Date:2017年6月30日下午6:26:51  
- * Copyright (c) 2017, xie.coder@gmail.com All Rights Reserved.  
- *  
-*/
+/**
+ * Project Name:Dev
+ * File Name:SystemInit.java
+ * Package Name:com.gqxie.common
+ * Date:2017年6月30日下午6:26:51
+ * Copyright (c) 2017, xie.coder@gmail.com All Rights Reserved.
+ */
 
 package com.gqxie.common;
 
+import com.gqxie.entity.User;
+import com.gqxie.service.UserService;
+import com.gqxie.util.ehcache.EhcacheUtil;
+import com.gqxie.util.encrypt.AesUtil;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,46 +25,31 @@ import java.io.ObjectInputStream;
 import java.security.Key;
 import java.util.List;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-
-import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import com.gqxie.entity.User;
-import com.gqxie.service.UserService;
-import com.gqxie.util.ehcache.EhcacheUtil;
-import com.gqxie.util.encrypt.AesUtil;
-
 /**
  * ClassName:SystemInit <br/>
- * Function: TODO ADD FUNCTION. <br/>
- * Reason: TODO ADD REASON. <br/>
  * Date: 2017年6月30日 下午6:26:51 <br/>
- * 
+ *
  * @author xie
- * @version
- * @since JDK 1.8
  * @see
+ * @since JDK 1.8
  */
 @Component
 public class SystemInit implements ServletContextListener
 {
-    private Logger              logger       = Logger.getLogger(SystemInit.class);
+    private Logger logger = Logger.getLogger(SystemInit.class);
 
     private static final String AES_KEY_FILE = "AesKey";
 
     @Autowired
-    private UserService         userService;
+    private UserService userService;
 
     @Override
     public void contextDestroyed(ServletContextEvent arg0)
     {
+        //do nothing
     }
 
-    public void init() throws IOException
+    public void init()
     {
         // 加载aes密钥
         readAesKey();
@@ -74,7 +68,6 @@ public class SystemInit implements ServletContextListener
         catch (Exception e)
         {
             logger.error("init ehcache error!", e);
-            e.printStackTrace();
         }
 
     }
@@ -93,12 +86,8 @@ public class SystemInit implements ServletContextListener
     {
         logger.info("load aes key from " + this.getClass().getResource("/").getPath() + AES_KEY_FILE + " ...");
         String aesKeyFile = this.getClass().getResource("/").getPath() + AES_KEY_FILE;
-        FileInputStream fis = null;
-        ObjectInputStream ois = null;
-        try
+        try (FileInputStream fis = new FileInputStream(aesKeyFile); ObjectInputStream ois = new ObjectInputStream(fis))
         {
-            fis = new FileInputStream(aesKeyFile);
-            ois = new ObjectInputStream(fis);
             Key key = (Key) ois.readObject();
             AesUtil.setKey(key);
             logger.info("load aes key success...");
@@ -106,21 +95,10 @@ public class SystemInit implements ServletContextListener
         catch (FileNotFoundException e)
         {
             logger.error("aes key file not found.", e);
-            e.printStackTrace();
         }
-        catch (ClassNotFoundException e)
+        catch (ClassNotFoundException | IOException e)
         {
             logger.error("load aes key failed.", e);
-            e.printStackTrace();
-        }
-        catch (IOException e)
-        {
-            logger.error("load aes key failed.", e);
-            e.printStackTrace();
-        }
-        finally
-        {
-            IOUtils.closeQuietly(ois);
         }
     }
 }

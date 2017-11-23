@@ -1,19 +1,16 @@
 package com.gqxie.service.impl;
 
-import java.util.List;
-
+import com.gqxie.entity.User;
+import com.gqxie.mapper.TUserMapper;
+import com.gqxie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gqxie.entity.User;
-import com.gqxie.mapper.TUserMapper;
-import com.gqxie.service.UserService;
+import java.util.List;
 
 /**
- * 
  * @author gqxie
- *
  */
 @Service
 @Transactional(rollbackFor = Exception.class)

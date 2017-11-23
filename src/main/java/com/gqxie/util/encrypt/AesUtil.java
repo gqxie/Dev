@@ -1,22 +1,20 @@
 package com.gqxie.util.encrypt;
 
-import java.security.Key;
-
 import org.apache.log4j.Logger;
 import org.apache.shiro.codec.Hex;
 import org.apache.shiro.crypto.AesCipherService;
 
+import java.security.Key;
+
 /**
- * 
  * @author gqxie
- *
  */
 public final class AesUtil
 {
 
-    private static Logger           logger = Logger.getLogger(AesUtil.class);
+    private static Logger logger = Logger.getLogger(AesUtil.class);
 
-    private static Key              key;
+    private static Key key;
 
     private static AesCipherService aesCipherService;
 

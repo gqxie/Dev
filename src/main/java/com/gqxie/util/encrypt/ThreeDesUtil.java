@@ -1,24 +1,24 @@
-/**  
- * Project Name:Dev  
- * File Name:ThreeDESUtil.java  
- * Package Name:com.gqxie.util.encrypt  
- * Date:2017年6月30日下午12:33:36  
- * Copyright (c) 2017, xie.coder@gmail.com All Rights Reserved.  
- *  
-*/
+/**
+ * Project Name:Dev
+ * File Name:ThreeDESUtil.java
+ * Package Name:com.gqxie.util.encrypt
+ * Date:2017年6月30日下午12:33:36
+ * Copyright (c) 2017, xie.coder@gmail.com All Rights Reserved.
+ */
 
 package com.gqxie.util.encrypt;
 
-/**  
+/**
  * ClassName:ThreeDESUtil <br/>  
  * Function: TODO ADD FUNCTION. <br/>  
  * Reason:   TODO ADD REASON. <br/>  
  * Date:     2017年6月30日 下午12:33:36 <br/>  
- * @author   xie  
- * @version    
- * @since    JDK 1.8  
- * @see        
+ * @author xie
+ * @version
+ * @since JDK 1.8
+ * @see
  */
+
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
@@ -43,15 +43,15 @@ public class ThreeDesUtil
      */
     public static final String CIPHER_ALGORITHM = "desede/CBC/NoPadding";
 
-    private static final char  A_LOWER_CASE     = 'a';
+    private static final char A_LOWER_CASE = 'a';
 
-    private static final char  A_UPPER_CASE     = 'A';
+    private static final char A_UPPER_CASE = 'A';
 
-    private static final char  ZERO             = '0';
+    private static final char ZERO = '0';
 
     /**
      * CBC加密
-     * 
+     *
      * @param key
      *            密钥
      * @param keyiv
@@ -78,9 +78,9 @@ public class ThreeDesUtil
     }
 
     /**
-     * 
+     *
      * 生成密钥key对象
-     * 
+     *
      * @param KeyStr
      *            密钥字符串
      * @return 密钥对象
@@ -112,7 +112,7 @@ public class ThreeDesUtil
 
     /**
      * 从十六进制字符串到字节数组转换
-     * 
+     *
      * @param hexstr
      * @return
      */
@@ -131,7 +131,7 @@ public class ThreeDesUtil
 
     /**
      * CBC解密
-     * 
+     *
      * @param key
      *            密钥
      * @param keyiv

@@ -1,60 +1,58 @@
-/**  
- * Project Name:Dev  
- * File Name:User.java  
- * Package Name:com.gqxie.entity  
- * Date:2017年6月25日上午8:54:58  
- * Copyright (c) 2017, xie.coder@gmail.com All Rights Reserved.  
- *  
-*/
-
-package com.gqxie.entity;
-/**  
- * ClassName:User <br/>  
- * Function: TODO ADD FUNCTION. <br/>  
- * Reason:   TODO ADD REASON. <br/>  
- * Date:     2017年6月25日 上午8:54:58 <br/>  
- * @author   xie  
- * @version    
- * @since    JDK 1.8  
- * @see        
+/**
+ * Project Name:Dev
+ * File Name:User.java
+ * Package Name:com.gqxie.entity
+ * Date:2017年6月25日上午8:54:58
+ * Copyright (c) 2017, xie.coder@gmail.com All Rights Reserved.
  */
 
-import java.io.Serializable;
-import java.util.Date;
+package com.gqxie.entity;
+/**
+ * ClassName:User <br/>
+ * Function: TODO ADD FUNCTION. <br/>
+ * Reason:   TODO ADD REASON. <br/>
+ * Date:     2017年6月25日 上午8:54:58 <br/>
+ *
+ * @author xie
+ * @version
+ * @see
+ * @since JDK 1.8
+ */
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.Date;
 
 public class User implements Serializable
 {
     /**
-     * serialVersionUID:TODO(用一句话描述这个变量表示什么).
-     * 
+     *
      * @since JDK 1.8
      */
     private static final long serialVersionUID = 3427446400328367569L;
 
-    private Long              id;
+    private Long id;
 
-    private Long              userID;
+    private Long userID;
 
-    private String            account;
+    private String account;
 
-    private String            pwd;
+    private String pwd;
 
-    private Integer           gender;
+    private Integer gender;
 
-    private Integer           age;
+    private Integer age;
 
-    private Integer           state;
+    private Integer state;
 
-    private Date              birthDay;
+    private Date birthDay;
 
-    private String            email;
+    private String email;
 
-    private String            phone;
+    private String phone;
 
     @NotNull(message = "昵称不能为空")
-    private String            nickName;
+    private String nickName;
 
     public Long getId()
     {
@@ -68,7 +66,7 @@ public class User implements Serializable
 
     /**
      * userID.
-     * 
+     *
      * @return the userID
      * @since JDK 1.8
      */
@@ -79,7 +77,7 @@ public class User implements Serializable
 
     /**
      * userID.
-     * 
+     *
      * @param userID
      *            the userID to set
      * @since JDK 1.8
@@ -91,7 +89,7 @@ public class User implements Serializable
 
     /**
      * account.
-     * 
+     *
      * @return the account
      * @since JDK 1.8
      */
@@ -102,7 +100,7 @@ public class User implements Serializable
 
     /**
      * account.
-     * 
+     *
      * @param account
      *            the account to set
      * @since JDK 1.8
@@ -114,7 +112,7 @@ public class User implements Serializable
 
     /**
      * pwd.
-     * 
+     *
      * @return the pwd
      * @since JDK 1.8
      */
@@ -125,7 +123,7 @@ public class User implements Serializable
 
     /**
      * pwd.
-     * 
+     *
      * @param pwd
      *            the pwd to set
      * @since JDK 1.8
@@ -137,7 +135,7 @@ public class User implements Serializable
 
     /**
      * gender.
-     * 
+     *
      * @return the gender
      * @since JDK 1.8
      */
@@ -148,7 +146,7 @@ public class User implements Serializable
 
     /**
      * gender.
-     * 
+     *
      * @param gender
      *            the gender to set
      * @since JDK 1.8
@@ -160,7 +158,7 @@ public class User implements Serializable
 
     /**
      * age.
-     * 
+     *
      * @return the age
      * @since JDK 1.8
      */
@@ -171,7 +169,7 @@ public class User implements Serializable
 
     /**
      * age.
-     * 
+     *
      * @param age
      *            the age to set
      * @since JDK 1.8
@@ -183,7 +181,7 @@ public class User implements Serializable
 
     /**
      * state.
-     * 
+     *
      * @return the state
      * @since JDK 1.8
      */
@@ -194,7 +192,7 @@ public class User implements Serializable
 
     /**
      * state.
-     * 
+     *
      * @param state
      *            the state to set
      * @since JDK 1.8
@@ -206,7 +204,7 @@ public class User implements Serializable
 
     /**
      * birthDay.
-     * 
+     *
      * @return the birthDay
      * @since JDK 1.8
      */
@@ -217,7 +215,7 @@ public class User implements Serializable
 
     /**
      * birthDay.
-     * 
+     *
      * @param birthDay
      *            the birthDay to set
      * @since JDK 1.8
@@ -229,7 +227,7 @@ public class User implements Serializable
 
     /**
      * email.
-     * 
+     *
      * @return the email
      * @since JDK 1.8
      */
@@ -240,7 +238,7 @@ public class User implements Serializable
 
     /**
      * email.
-     * 
+     *
      * @param email
      *            the email to set
      * @since JDK 1.8
@@ -252,7 +250,7 @@ public class User implements Serializable
 
     /**
      * phone.
-     * 
+     *
      * @return the phone
      * @since JDK 1.8
      */
@@ -263,7 +261,7 @@ public class User implements Serializable
 
     /**
      * phone.
-     * 
+     *
      * @param phone
      *            the phone to set
      * @since JDK 1.8
@@ -275,7 +273,7 @@ public class User implements Serializable
 
     /**
      * nickName.
-     * 
+     *
      * @return the nickName
      * @since JDK 1.8
      */
@@ -286,7 +284,7 @@ public class User implements Serializable
 
     /**
      * nickName.
-     * 
+     *
      * @param nickName
      *            the nickName to set
      * @since JDK 1.8
@@ -298,7 +296,7 @@ public class User implements Serializable
 
     /**
      * TODO 简单描述该方法的实现功能（可选）.
-     * 
+     *
      * @see java.lang.Object#toString()
      */
     @Override

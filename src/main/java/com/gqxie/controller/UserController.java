@@ -1,26 +1,26 @@
-/**  
- * Project Name:Dev  
- * File Name:CostListController.java  
- * Package Name:com.gqxie.controller  
- * Date:2017年6月24日上午9:47:04  
- * Copyright (c) 2017, xie.coder@gmail.com All Rights Reserved.  
- *  
-*/
-
-package com.gqxie.controller;
-/**  
- * ClassName:CostListController <br/>  
- * Function: TODO ADD FUNCTION. <br/>  
- * Reason:   TODO ADD REASON. <br/>  
- * Date:     2017年6月24日 上午9:47:04 <br/>  
- * @author   xie  
- * @version    
- * @since    JDK 1.8  
- * @see        
+/**
+ * Project Name:Dev
+ * File Name:CostListController.java
+ * Package Name:com.gqxie.controller
+ * Date:2017年6月24日上午9:47:04
+ * Copyright (c) 2017, xie.coder@gmail.com All Rights Reserved.
  */
 
-import javax.servlet.http.HttpServletRequest;
+package com.gqxie.controller;
+/**
+ * ClassName:CostListController <br/>
+ * Date:     2017年6月24日 上午9:47:04 <br/>
+ *
+ * @author xie
+ * @version
+ * @see
+ * @since JDK 1.8
+ */
 
+import com.gqxie.entity.User;
+import com.gqxie.service.UserService;
+import com.gqxie.util.ehcache.EhcacheUtil;
+import com.gqxie.util.encrypt.AesUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,10 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.gqxie.entity.User;
-import com.gqxie.service.UserService;
-import com.gqxie.util.ehcache.EhcacheUtil;
-import com.gqxie.util.encrypt.AesUtil;
+import javax.servlet.http.HttpServletRequest;
 
 @RequestMapping("/user")
 @Controller
@@ -40,11 +37,11 @@ public class UserController
     @Autowired
     private UserService userService;
 
-    private Logger      logger = Logger.getLogger(UserController.class);
+    private Logger logger = Logger.getLogger(UserController.class);
 
     /**
      * 用户登录
-     * 
+     *
      * @param request
      * @return
      */
@@ -66,7 +63,7 @@ public class UserController
 
     /**
      * 通过userID查询指定用户
-     * 
+     *
      * @param request
      * @return
      */
@@ -81,7 +78,7 @@ public class UserController
 
     /**
      * 查询所有用户
-     * 
+     *
      * @param request
      * @return
      */

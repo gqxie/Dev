@@ -2,10 +2,12 @@ package com.gqxie.mapper;
 
 import com.gqxie.entity.TApp;
 import com.gqxie.entity.TAppExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface TAppMapper {
+import java.util.List;
+
+public interface TAppMapper
+{
     long countByExample(TAppExample example);
 
     int deleteByExample(TAppExample example);

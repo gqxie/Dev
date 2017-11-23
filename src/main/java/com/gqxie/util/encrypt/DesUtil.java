@@ -1,24 +1,24 @@
-/**  
- * Project Name:Dev  
- * File Name:DESUtil.java  
- * Package Name:com.gqxie.util.encrypt  
- * Date:2017年6月30日下午12:32:42  
- * Copyright (c) 2017, xie.coder@gmail.com All Rights Reserved.  
- *  
-*/
+/**
+ * Project Name:Dev
+ * File Name:DESUtil.java
+ * Package Name:com.gqxie.util.encrypt
+ * Date:2017年6月30日下午12:32:42
+ * Copyright (c) 2017, xie.coder@gmail.com All Rights Reserved.
+ */
 
 package com.gqxie.util.encrypt;
 
-/**  
+/**
  * ClassName:DESUtil <br/>  
  * Function: TODO ADD FUNCTION. <br/>  
  * Reason:   TODO ADD REASON. <br/>  
  * Date:     2017年6月30日 下午12:32:42 <br/>  
- * @author   xie  
- * @version    
- * @since    JDK 1.8  
- * @see        
+ * @author xie
+ * @version
+ * @since JDK 1.8
+ * @see
  */
+
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
@@ -44,16 +44,16 @@ public class DesUtil
      */
     public static final String CIPHER_ALGORITHM = "DES/ECB/PKCS5Padding";
 
-    private static final char  A_LOWER_CASE     = 'a';
+    private static final char A_LOWER_CASE = 'a';
 
-    private static final char  A_UPPER_CASE     = 'A';
+    private static final char A_UPPER_CASE = 'A';
 
-    private static final char  ZERO             = '0';
+    private static final char ZERO = '0';
 
     /**
-     * 
+     *
      * 生成密钥key对象
-     * 
+     *
      * @param KeyStr
      *            密钥字符串
      * @return 密钥对象
@@ -87,7 +87,7 @@ public class DesUtil
 
     /**
      * 从十六进制字符串到字节数组转换
-     * 
+     *
      * @param hexstr
      * @return
      */
@@ -106,7 +106,7 @@ public class DesUtil
 
     /**
      * 加密数据
-     * 
+     *
      * @param data
      *            待加密数据
      * @param key
@@ -134,7 +134,7 @@ public class DesUtil
 
     /**
      * 解密数据
-     * 
+     *
      * @param data
      *            待解密数据
      * @param key

@@ -1,31 +1,31 @@
-/**  
- * Project Name:Dev  
- * File Name:SHAUtil.java  
- * Package Name:com.gqxie.util.encrypt  
- * Date:2017年6月30日下午12:36:21  
- * Copyright (c) 2017, xie.coder@gmail.com All Rights Reserved.  
- *  
-*/
+/**
+ * Project Name:Dev
+ * File Name:SHAUtil.java
+ * Package Name:com.gqxie.util.encrypt
+ * Date:2017年6月30日下午12:36:21
+ * Copyright (c) 2017, xie.coder@gmail.com All Rights Reserved.
+ */
 
 package com.gqxie.util.encrypt;
 
-/**  
+/**
  * ClassName:SHAUtil <br/>  
  * Function: TODO ADD FUNCTION. <br/>  
  * Reason:   TODO ADD REASON. <br/>  
  * Date:     2017年6月30日 下午12:36:21 <br/>  
- * @author   xie  
- * @version    
- * @since    JDK 1.8  
- * @see        
+ * @author xie
+ * @version
+ * @since JDK 1.8
+ * @see
  */
+
 import java.security.MessageDigest;
 
 public class ShaUtil
 {
     /***
      * SHA加密 生成40位SHA码
-     * 
+     *
      * @param 待加密字符串
      * @return 返回40位SHA码
      */
@@ -35,7 +35,8 @@ public class ShaUtil
         try
         {
             sha = MessageDigest.getInstance("SHA");
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
             System.out.println(e.toString());
             e.printStackTrace();
