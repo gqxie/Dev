@@ -17,6 +17,8 @@
 6.mybatis-generator-gui
 
 7.druid
+
+8.travis
  
  ## 待引入的框架及工具
 1.java mail
