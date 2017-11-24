@@ -4,14 +4,22 @@
  个人学习用的java web工程，整合了主流的java框架
  
  ## 已引入的框架及工具
- ### 1.spring
- ### 2.spring mvc
- ### 3.mybatis
- ### 4.ehcache
- ### 5.activemq
- ### 6.mybatis-generator-gui
- ### 7.druid
+1.spring
+
+2.spring mvc
+
+3.mybatis
+
+4.ehcache
+
+5.activemq
+
+6.mybatis-generator-gui
+
+7.druid
  
  ## 待引入的框架及工具
- ### 1.java mail
- ### 2.fast dfs
+1.java mail
+
+2.fast dfs
+
