@@ -5,3 +5,6 @@ Dev.iml
 WebContent/WEB-INF/classes/
 /target/
 logs/
+.classpath
+.project
+.settings/
