@@ -46,7 +46,7 @@ public class UserController
      * @param request
      * @return
      */
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login", produces = "text/html; charset=UTF-8")
     @ResponseBody
     public ModelAndView execute(HttpServletRequest request, HttpServletResponse response)
     {

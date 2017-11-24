@@ -8,3 +8,5 @@ logs/
 .classpath
 .project
 .settings/
+Dev.ipr
+Dev.iws
