@@ -6,6 +6,8 @@
         http://www.springframework.org/schema/context   
         http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
+    <context:property-placeholder location="classpath*:mail.properties"/>
+
     <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
 
     <bean class="com.gqxie.common.EncodingBeanPostProcessor"></bean>
