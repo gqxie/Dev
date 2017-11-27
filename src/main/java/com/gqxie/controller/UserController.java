@@ -70,7 +70,7 @@ public class UserController
         }
         else
         {
-            logger.info("user" + user.getNickName() + "login success");
+            logger.info("user " + user.getNickName() + " login success");
             msg = "登录成功，欢迎你：" + user.getNickName();
             view = "success";
             emailMsgSender.sendEmail("xieguoqiang@chezhibao.com", "测试主题test",

@@ -33,7 +33,7 @@ public class EmailMsgSender
      * @param queueName 队列名称
      * @param message   消息内容
      */
-    public void send(String queueName, final String message)
+    private void send(String queueName, final String message)
     {
         jmsTemplate.send(queueName, session -> session.createTextMessage(message));
     }
