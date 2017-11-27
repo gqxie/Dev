@@ -17,19 +17,23 @@ package com.gqxie.controller;
  * @since JDK 1.8
  */
 
+import com.gqxie.common.email.mq.EmailMsgSender;
 import com.gqxie.entity.User;
 import com.gqxie.service.UserService;
 import com.gqxie.util.ehcache.EhcacheUtil;
+import com.gqxie.util.email.EmailUtil;
 import com.gqxie.util.encrypt.AesUtil;
 import org.apache.log4j.Logger;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @RequestMapping("/user")
 @Controller
@@ -38,42 +42,55 @@ public class UserController
     @Autowired
     private UserService userService;
 
+    @Autowired
+    @Qualifier("emailMsgSender")
+    EmailMsgSender emailMsgSender;
+
     private Logger logger = Logger.getLogger(UserController.class);
 
     /**
      * 用户登录
      *
-     * @param request
+     * @param account
+     * @param password
      * @return
      */
     @RequestMapping(value = "/login", produces = "text/html; charset=UTF-8")
     @ResponseBody
-    public ModelAndView execute(HttpServletRequest request, HttpServletResponse response)
+    public ModelAndView execute(@RequestParam String account, @RequestParam String password)
     {
-        logger.warn("login begin...");
-        String account = request.getParameter("username");
-        String password = request.getParameter("password");
         User user = userService.verify(account, password);
-        String msg = null == user ? "用户名或密码错误" : "登录成功，欢迎你：" + user.getNickName();
+        String msg;
+        String view;
         ModelAndView mav = new ModelAndView();
-        String view = null == user ? "login" : "success";
+        if (null == user)
+        {
+            msg = "用户名或密码错误";
+            view = "login";
+        }
+        else
+        {
+            logger.info("user" + user.getNickName() + "login success");
+            msg = "登录成功，欢迎你：" + user.getNickName();
+            view = "success";
+            emailMsgSender.sendEmail("xieguoqiang@chezhibao.com", "测试主题test",
+                    "用户" + user.getNickName() + "于" + DateTime.now().toString("yyyy-MM-dd HH:mm:ss") + "登录系统.");
+        }
         mav.setViewName(view);
         mav.getModel().put("msg", msg);
-        logger.warn("login end...");
         return mav;
     }
 
     /**
      * 通过userID查询指定用户
      *
-     * @param request
+     * @param id
      * @return
      */
     @RequestMapping("getUserByID")
     @ResponseBody
-    private Object getUserByID(HttpServletRequest request)
+    private Object getUserByID(@RequestParam Long id)
     {
-        Long id = Long.valueOf(request.getParameter("id"));
         User user = EhcacheUtil.get(id);
         return null != user ? user : userService.getUserByID(id);
     }

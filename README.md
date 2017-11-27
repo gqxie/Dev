@@ -19,11 +19,11 @@
 7.druid
 
 8.travis
+
+9.java mail
  
  ## 待引入的框架及工具
-1.java mail
+1.fast dfs
 
-2.fast dfs
-
-3.vue.js
+2.vue.js
 

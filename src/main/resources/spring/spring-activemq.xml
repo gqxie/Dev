@@ -49,6 +49,7 @@
                             acknowledge="auto">
         <jms:listener destination="test.queue" ref="queueReceiver1"/>
         <jms:listener destination="test.queue" ref="queueReceiver2"/>
+        <jms:listener destination="email.queue" ref="emailMsgReceiver"/>
     </jms:listener-container>
 
     <!-- 定义Topic监听器 -->
