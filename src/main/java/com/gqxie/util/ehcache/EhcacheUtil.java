@@ -1,19 +1,22 @@
 package com.gqxie.util.ehcache;
 
+import com.gqxie.entity.TUser;
 import org.ehcache.Cache;
 import org.ehcache.CacheManager;
 import org.ehcache.config.builders.CacheConfigurationBuilder;
 import org.ehcache.config.builders.CacheManagerBuilder;
 import org.ehcache.config.builders.ResourcePoolsBuilder;
 
-import com.gqxie.entity.User;
+import javax.xml.registry.infomodel.User;
 
 /**
+ * 缓存
+ *
  * @author gqxie
  */
 public class EhcacheUtil
 {
-    private static Cache<Long, User> myCache;
+    private static Cache<Integer, TUser> myCache;
 
     private static CacheManager cacheManager;
 
@@ -24,15 +27,15 @@ public class EhcacheUtil
                 .build(true);
 
         myCache = cacheManager.createCache("devcache", CacheConfigurationBuilder
-                .newCacheConfigurationBuilder(Long.class, User.class, ResourcePoolsBuilder.heap(100)).build());
+                .newCacheConfigurationBuilder(Integer.class, TUser.class, ResourcePoolsBuilder.heap(100)).build());
     }
 
-    public static void put(Long key, User value)
+    public static void put(Integer key, TUser value)
     {
         myCache.put(key, value);
     }
 
-    public static User get(Long key)
+    public static TUser get(Integer key)
     {
         return myCache.get(key);
     }

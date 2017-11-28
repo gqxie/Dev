@@ -8,8 +8,9 @@
 
 package com.gqxie.common;
 
-import com.gqxie.entity.User;
-import com.gqxie.service.UserService;
+import com.gqxie.entity.TUser;
+import com.gqxie.entity.TUserExample;
+import com.gqxie.mapper.TUserMapper;
 import com.gqxie.util.ehcache.EhcacheUtil;
 import com.gqxie.util.encrypt.AesUtil;
 import org.apache.log4j.Logger;
@@ -41,7 +42,7 @@ public class SystemInit implements ServletContextListener
     private static final String AES_KEY_FILE = "AesKey";
 
     @Autowired
-    private UserService userService;
+    private TUserMapper userMapper;
 
     @Override
     public void contextDestroyed(ServletContextEvent arg0)
@@ -74,8 +75,9 @@ public class SystemInit implements ServletContextListener
 
     private void addAllUserToCache()
     {
-        List<User> list = userService.findAll();
-        for (User user : list)
+        TUserExample example = new TUserExample();
+        List<TUser> list = userMapper.selectByExample(example);
+        for (TUser user : list)
         {
             user.setPwd(AesUtil.decrypt(user.getPwd()));
             EhcacheUtil.put(user.getId(), user);

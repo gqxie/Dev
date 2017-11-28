@@ -1,51 +1,25 @@
 package com.gqxie.service;
 
-import com.gqxie.entity.User;
-
-import java.util.List;
-
 /**
- * @author gqxie
+ * @author Xie Guoqiang
+ * @date 2017-11-28 17:05:41
  */
 public interface UserService
 {
     /**
-     * 获取所有用户
+     * 登录
      *
+     * @param account  用户名
+     * @param password 密码
      * @return
      */
-    List<User> findAll();
+    Object login(String account, String password);
 
     /**
-     * 按id查询指定用户
+     * 根据id查询
      *
-     * @param id id
+     * @param id
      * @return
      */
-    User getUserByID(Long id);
-
-    /**
-     * 根据用户名查询指定用户
-     *
-     * @param account 用户名
-     * @return
-     */
-    User findByAccount(String account);
-
-    /**
-     * 登录校验
-     *
-     * @param account 用户名
-     * @param pwd     密码
-     * @return
-     */
-    User verify(String account, String pwd);
-
-    /**
-     * 新增用户
-     *
-     * @param user 用户
-     * @return
-     */
-    Integer addUser(User user);
+    Object getUserByID(Integer id);
 }

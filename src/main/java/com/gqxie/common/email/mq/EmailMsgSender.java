@@ -51,4 +51,15 @@ public class EmailMsgSender
         String msg = JSON.toJSONString(emailVO);
         send(EMAIL_QUEUE, msg);
     }
+
+    /**
+     * 邮件消息体对象
+     *
+     * @param emailVO
+     */
+    public void sendEmail(EmailVO emailVO)
+    {
+        String msg = JSON.toJSONString(emailVO);
+        send(EMAIL_QUEUE, msg);
+    }
 }

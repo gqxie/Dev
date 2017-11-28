@@ -38,7 +38,7 @@ public final class AesUtil
         }
         catch (Exception e)
         {
-            logger.warn("decrypt text failed,return origin value.");
+            logger.debug("decrypt text failed,return origin value.");
         }
 
         return source;

@@ -1,61 +1,39 @@
-/**
- * Project Name:Dev
- * File Name:IUserDao.java
- * Package Name:com.gqxie.dao
- * Date:2017年6月25日上午9:01:47
- * Copyright (c) 2017, xie.coder@gmail.com All Rights Reserved.
- */
-
 package com.gqxie.mapper;
-/**
- * ClassName:IUserDao <br/>
- * Date:     2017年6月25日 上午9:01:47 <br/>
- *
- * @author xie
- * @version
- * @see
- * @since JDK 1.8
- */
 
-import com.gqxie.entity.User;
-import org.apache.ibatis.annotations.Param;
+import com.gqxie.entity.TUser;
+import com.gqxie.entity.TUserExample;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
+/**
+ * 用户相关操作
+ *
+ * @author xieguoqiang
+ * @date 2017年11月28日14:38:03
+ */
 public interface TUserMapper
 {
-    /**
-     * 获取所有用户
-     * @return
-     */
-    List<User> findAll();
+    long countByExample(TUserExample example);
 
-    /**
-     * 按id查询指定用户
-     * @param id    id
-     * @return
-     */
-    User findByID(Long id);
+    int deleteByExample(TUserExample example);
 
-    /**
-     * 根据用户名查询指定用户
-     * @param account   用户名
-     * @return
-     */
-    User findByAccount(String account);
+    int deleteByPrimaryKey(Integer id);
 
-    /**
-     * 登录校验
-     * @param account   用户名
-     * @param pwd   密码
-     * @return
-     */
-    User verify(@Param("account") String account, @Param("pwd") String pwd);
+    int insert(TUser record);
 
-    /**
-     * 新增用户
-     * @param user  用户
-     * @return
-     */
-    Integer addUser(User user);
+    int insertSelective(TUser record);
+
+    List<TUser> selectByExample(TUserExample example);
+
+    TUser selectByPrimaryKey(Integer id);
+
+    int updateByExampleSelective(@Param("record") TUser record, @Param("example") TUserExample example);
+
+    int updateByExample(@Param("record") TUser record, @Param("example") TUserExample example);
+
+    int updateByPrimaryKeySelective(TUser record);
+
+    int updateByPrimaryKey(TUser record);
 }
