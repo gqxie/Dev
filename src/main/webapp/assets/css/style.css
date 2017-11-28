@@ -16,7 +16,20 @@ body {
 }
 
 .page-container {
-    margin: 240px auto 0 auto;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url("../img/bg.png") no-repeat center;
+    background-size: 100% 100%;
+}
+.page-container:before{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    left:0;
+    background: rgba(0,0,0, 0.2);
 }
 
 h1 {
@@ -182,6 +195,6 @@ button:active {
 .connect a.twitter { background: url(../img/twitter.png) center center no-repeat; }
 
 .connect a:hover { background-position: center bottom; }
-
-
+.container{margin: auto;}
+.container .register{display:flex;color: #fff;font-size: 14px;cursor: pointer;width: 100%;height:30px;justify-content: flex-end;align-items: center;line-height: 30px;}
 
