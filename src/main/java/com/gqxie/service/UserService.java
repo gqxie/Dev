@@ -40,4 +40,11 @@ public interface UserService
      * @return
      */
     List<TUser> findByEmail(String email);
+
+    /**
+     * 添加用户
+     *
+     * @param user
+     */
+    void addUser(TUser user);
 }

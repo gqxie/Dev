@@ -3,6 +3,7 @@ package com.gqxie.controller;
  * @author xie
  * @since JDK 1.8
  */
+
 import com.gqxie.constants.ErrorCode;
 import com.gqxie.entity.Result;
 import com.gqxie.entity.TUser;
@@ -60,6 +61,8 @@ public class UserController
             result.fail(ErrorCode.RECORD_EXIST_EMAIL);
             return result;
         }
-        return null;
+        userService.addUser(user);
+        result.success();
+        return result;
     }
 }

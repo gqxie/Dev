@@ -88,4 +88,10 @@ public class UserServiceImpl implements UserService
         criteria.andEmailEqualTo(email);
         return userMapper.selectByExample(userExample);
     }
+
+    @Override
+    public void addUser(TUser user)
+    {
+        userMapper.insert(user);
+    }
 }

@@ -151,6 +151,16 @@ public class Result<T> implements Serializable
     }
 
     /**
+     * 成功
+     */
+    public void success()
+    {
+        this.success = true;
+        this.errorCode = "0";
+        this.message = "success";
+    }
+
+    /**
      * 获取是否成功
      *
      * @return 是否成功
