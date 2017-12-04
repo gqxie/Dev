@@ -14,33 +14,51 @@ import javax.xml.registry.infomodel.User;
  *
  * @author gqxie
  */
-public class EhcacheUtil
+public final class EhcacheUtil
 {
-    private static Cache<Integer, TUser> myCache;
+    private static Cache<String, Object> myCache;
 
     private static CacheManager cacheManager;
 
-    public static void init()
+    private static volatile EhcacheUtil ehcacheUtil;
+
+    public static EhcacheUtil getInstance()
+    {
+        if (null == ehcacheUtil)
+        {
+            synchronized (EhcacheUtil.class)
+            {
+                if (null == ehcacheUtil)
+                {
+                    ehcacheUtil = new EhcacheUtil();
+                    init();
+                }
+            }
+        }
+        return ehcacheUtil;
+    }
+
+    private static void init()
     {
         cacheManager = CacheManagerBuilder.newCacheManagerBuilder().withCache("preConfigured", CacheConfigurationBuilder
                 .newCacheConfigurationBuilder(Long.class, String.class, ResourcePoolsBuilder.heap(100)).build())
                 .build(true);
 
         myCache = cacheManager.createCache("devcache", CacheConfigurationBuilder
-                .newCacheConfigurationBuilder(Integer.class, TUser.class, ResourcePoolsBuilder.heap(100)).build());
+                .newCacheConfigurationBuilder(String.class, Object.class, ResourcePoolsBuilder.heap(100)).build());
     }
 
-    public static void put(Integer key, TUser value)
+    public void put(String key, Object value)
     {
         myCache.put(key, value);
     }
 
-    public static TUser get(Integer key)
+    public Object get(String key)
     {
         return myCache.get(key);
     }
 
-    public static void close()
+    public void close()
     {
         cacheManager.close();
     }

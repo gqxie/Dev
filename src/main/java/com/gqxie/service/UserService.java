@@ -47,4 +47,9 @@ public interface UserService
      * @param user
      */
     void addUser(TUser user);
+
+    /**
+     * 发送验证码
+     */
+    Object sendVerifyCode(String account, String email);
 }

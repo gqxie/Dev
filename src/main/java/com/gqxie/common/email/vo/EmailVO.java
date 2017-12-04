@@ -1,5 +1,6 @@
 package com.gqxie.common.email.vo;
 
+import com.gqxie.constants.email.EmailTypeEnum;
 import lombok.Data;
 
 /**
@@ -15,12 +16,17 @@ public class EmailVO
 
     }
 
-    public EmailVO(String mailTo, String subject, String content)
+    public EmailVO(EmailTypeEnum type, String mailTo, String subject, String content)
     {
         this.mailTo = mailTo;
         this.subject = subject;
         this.content = content;
     }
+
+    /**
+     * 邮件类型
+     */
+    private EmailTypeEnum type;
 
     /**
      * 收件人
@@ -34,6 +40,16 @@ public class EmailVO
      * 内容
      */
     private String content;
+
+    public EmailTypeEnum getType()
+    {
+        return type;
+    }
+
+    public void setType(EmailTypeEnum type)
+    {
+        this.type = type;
+    }
 
     public String getMailTo()
     {

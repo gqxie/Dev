@@ -5,9 +5,13 @@ package com.gqxie.controller;
  */
 
 import com.gqxie.constants.ErrorCode;
+import com.gqxie.constants.user.UserStateEnum;
 import com.gqxie.entity.Result;
 import com.gqxie.entity.TUser;
 import com.gqxie.service.UserService;
+import com.gqxie.util.ehcache.EhcacheUtil;
+import com.gqxie.util.email.EmailUtil;
+import com.gqxie.util.math.RandomUtil;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,7 +52,7 @@ public class UserController
 
     @RequestMapping("/register")
     @ResponseBody
-    public Object register(TUser user)
+    public Object register(TUser user, String verifyCode)
     {
         Result result = new Result();
         if (!CollectionUtils.isEmpty(userService.findByAccount(user.getAccount())))
@@ -61,8 +65,26 @@ public class UserController
             result.fail(ErrorCode.RECORD_EXIST_EMAIL);
             return result;
         }
+        if (!verifyCode.equals(EhcacheUtil.getInstance().get(user.getAccount())))
+        {
+            result.fail(ErrorCode.VERIFY_CODE_ERROR);
+            return result;
+        }
+        user.setState(UserStateEnum.INACTIVATED.getCode());
         userService.addUser(user);
         result.success();
         return result;
+    }
+
+    /**
+     * 发送验证码
+     *
+     * @return
+     */
+    @RequestMapping("/sendVerifyCode")
+    @ResponseBody
+    public Object sendVerifyCode(String account, String email)
+    {
+        return userService.sendVerifyCode(account,email);
     }
 }

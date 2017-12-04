@@ -3,6 +3,8 @@ package com.gqxie.common.email.mq;
 import com.alibaba.druid.support.json.JSONUtils;
 import com.alibaba.fastjson.JSON;
 import com.gqxie.common.email.vo.EmailVO;
+import com.gqxie.constants.email.EmailTypeEnum;
+import org.hibernate.validator.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jms.core.JmsTemplate;
@@ -45,9 +47,9 @@ public class EmailMsgSender
      * @param subject 主题
      * @param content 内容
      */
-    public void sendEmail(String mailTo, String subject, String content)
+    public void sendEmail(EmailTypeEnum type, String mailTo, String subject, String content)
     {
-        EmailVO emailVO = new EmailVO(mailTo, subject, content);
+        EmailVO emailVO = new EmailVO(type, mailTo, subject, content);
         String msg = JSON.toJSONString(emailVO);
         send(EMAIL_QUEUE, msg);
     }

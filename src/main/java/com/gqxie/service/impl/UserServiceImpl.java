@@ -3,17 +3,23 @@ package com.gqxie.service.impl;
 import com.gqxie.common.email.mq.EmailMsgSender;
 import com.gqxie.common.email.vo.EmailVO;
 import com.gqxie.constants.ErrorCode;
+import com.gqxie.constants.email.EmailTypeEnum;
+import com.gqxie.constants.user.UserStateEnum;
 import com.gqxie.entity.Result;
 import com.gqxie.entity.TUser;
 import com.gqxie.entity.TUserExample;
 import com.gqxie.mapper.TUserMapper;
 import com.gqxie.service.UserService;
+import com.gqxie.util.ehcache.EhcacheUtil;
+import com.gqxie.util.email.EmailUtil;
+import com.gqxie.util.math.RandomUtil;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -47,10 +53,15 @@ public class UserServiceImpl implements UserService
             result.fail(ErrorCode.ACCOUONT_OR_PASSWORD_ERROR);
             return result;
         }
+        else if (UserStateEnum.INACTIVATED.getCode().equals(userList.get(0).getState()))
+        {
+            result.fail(ErrorCode.ACCOUNT_INACTIVATED);
+            return result;
+        }
         else
         {
             logger.info("user " + userList.get(0).getNickname() + " login success");
-            EmailVO emailVO = new EmailVO("xieguoqiang@chezhibao.com", "测试主题test",
+            EmailVO emailVO = new EmailVO(EmailTypeEnum.LOGIN, "xieguoqiang@chezhibao.com", "测试主题test",
                     "用户" + userList.get(0).getNickname() + "于" + DateTime.now().toString("yyyy-MM-dd HH:mm:ss")
                             + "登录系统.");
             emailMsgSender.sendEmail(emailVO);
@@ -93,5 +104,23 @@ public class UserServiceImpl implements UserService
     public void addUser(TUser user)
     {
         userMapper.insert(user);
+    }
+
+    @Override
+    public Object sendVerifyCode(String account, String email)
+    {
+        Result result = new Result();
+        if (StringUtils.isEmpty(account) || StringUtils.isEmpty(email))
+        {
+            result.fail();
+            result.setMessage("用户名或邮箱为空");
+            return result;
+        }
+        String verifyCode = RandomUtil.getRandomNum(6);
+        EhcacheUtil.getInstance().put(account, verifyCode);
+        EmailVO emailVO = new EmailVO(EmailTypeEnum.VERIFYCODE, email, "帐号注册验证码", "您的验证码是：" + verifyCode);
+        emailMsgSender.sendEmail(emailVO);
+        result.success();
+        return result;
     }
 }

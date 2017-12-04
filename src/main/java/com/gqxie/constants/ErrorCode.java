@@ -12,7 +12,11 @@ public enum ErrorCode
 
     RECORD_EXIST_ACCOUNT("9000103", "用户名已被占用"),
 
-    RECORD_EXIST_EMAIL("9000104", "邮箱已被占用");
+    RECORD_EXIST_EMAIL("9000104", "邮箱已被占用"),
+
+    ACCOUNT_INACTIVATED("9000105", "用户未激活"),
+
+    VERIFY_CODE_ERROR("9000106", "验证码错误");
 
     private String code;
 

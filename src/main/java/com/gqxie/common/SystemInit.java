@@ -64,7 +64,7 @@ public class SystemInit implements ServletContextListener
 
         try
         {
-            EhcacheUtil.init();
+            EhcacheUtil.getInstance();
         }
         catch (Exception e)
         {
@@ -80,7 +80,7 @@ public class SystemInit implements ServletContextListener
         for (TUser user : list)
         {
             user.setPwd(AesUtil.decrypt(user.getPwd()));
-            EhcacheUtil.put(user.getId(), user);
+            EhcacheUtil.getInstance().put(String.valueOf(user.getId()), user);
         }
     }
 
