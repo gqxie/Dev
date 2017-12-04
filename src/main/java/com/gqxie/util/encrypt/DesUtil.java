@@ -9,30 +9,28 @@
 package com.gqxie.util.encrypt;
 
 /**
- * ClassName:DESUtil <br/>  
- * Function: TODO ADD FUNCTION. <br/>  
- * Reason:   TODO ADD REASON. <br/>  
- * Date:     2017年6月30日 下午12:32:42 <br/>  
+ * ClassName:DESUtil <br/>
+ * Date:     2017年6月30日 下午12:32:42 <br/>
+ *
  * @author xie
  * @version
- * @since JDK 1.8
  * @see
+ * @since JDK 1.8
  */
 
+import org.apache.commons.codec.binary.Base64;
+
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 
-import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.DESKeySpec;
-
-import org.apache.commons.codec.binary.Base64;
-
-public class DesUtil
+public final class DesUtil
 {
     /**
      * 算法名称
@@ -51,11 +49,9 @@ public class DesUtil
     private static final char ZERO = '0';
 
     /**
-     *
      * 生成密钥key对象
      *
-     * @param KeyStr
-     *            密钥字符串
+     * @param keyStr 密钥字符串
      * @return 密钥对象
      * @throws InvalidKeyException
      * @throws NoSuchAlgorithmException
@@ -107,10 +103,8 @@ public class DesUtil
     /**
      * 加密数据
      *
-     * @param data
-     *            待加密数据
-     * @param key
-     *            密钥
+     * @param data 待加密数据
+     * @param key  密钥
      * @return 加密后的数据
      */
     public static String encrypt(String data, String key) throws Exception
@@ -127,7 +121,6 @@ public class DesUtil
         {
             System.out.print(results[i] + " ");
         }
-        System.out.println();
         // 执行加密操作。加密后的结果通常都会用Base64编码进行传输
         return Base64.encodeBase64String(results);
     }
@@ -135,10 +128,8 @@ public class DesUtil
     /**
      * 解密数据
      *
-     * @param data
-     *            待解密数据
-     * @param key
-     *            密钥
+     * @param data 待解密数据
+     * @param key  密钥
      * @return 解密后的数据
      */
     public static String decrypt(String data, String key) throws Exception

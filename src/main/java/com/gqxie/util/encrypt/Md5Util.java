@@ -9,24 +9,33 @@
 package com.gqxie.util.encrypt;
 
 /**
- * ClassName:MD5Util <br/>  
- * Function: TODO ADD FUNCTION. <br/>  
- * Reason:   TODO ADD REASON. <br/>  
- * Date:     2017年6月30日 下午12:35:51 <br/>  
+ * ClassName:MD5Util <br/>
+ * Date:     2017年6月30日 下午12:35:51 <br/>
+ *
  * @author xie
  * @version
- * @since JDK 1.8
  * @see
+ * @since JDK 1.8
  */
+
+import org.apache.log4j.Logger;
 
 import java.security.MessageDigest;
 
-public class Md5Util
+public final class Md5Util
 {
+
+    private static Logger logger = Logger.getLogger(Md5Util.class);
+
+    private Md5Util()
+    {
+
+    }
+
     /***
      * MD5加密 生成32位md5码
      *
-     * @param 待加密字符串
+     * @param inStr 待加密字符串
      * @return 返回32位md5码
      */
     public static String md5Encode(String inStr) throws Exception
@@ -38,14 +47,13 @@ public class Md5Util
         }
         catch (Exception e)
         {
-            System.out.println(e.toString());
-            e.printStackTrace();
+            logger.error("encode error.", e);
             return "";
         }
 
         byte[] byteArray = inStr.getBytes("UTF-8");
         byte[] md5Bytes = md5.digest(byteArray);
-        StringBuffer hexValue = new StringBuffer();
+        StringBuilder hexValue = new StringBuilder();
         for (int i = 0; i < md5Bytes.length; i++)
         {
             int val = ((int) md5Bytes[i]) & 0xff;

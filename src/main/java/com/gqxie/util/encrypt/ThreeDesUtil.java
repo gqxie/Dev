@@ -9,31 +9,35 @@
 package com.gqxie.util.encrypt;
 
 /**
- * ClassName:ThreeDESUtil <br/>  
- * Function: TODO ADD FUNCTION. <br/>  
- * Reason:   TODO ADD REASON. <br/>  
- * Date:     2017年6月30日 下午12:33:36 <br/>  
+ * ClassName:ThreeDESUtil <br/>
+ * Date:     2017年6月30日 下午12:33:36 <br/>
+ *
  * @author xie
- * @version
  * @since JDK 1.8
- * @see
  */
 
+import org.apache.log4j.Logger;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+
+import javax.crypto.Cipher;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESedeKeySpec;
+import javax.crypto.spec.IvParameterSpec;
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.security.Security;
 import java.security.spec.InvalidKeySpecException;
 
-import javax.crypto.Cipher;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.DESedeKeySpec;
-import javax.crypto.spec.IvParameterSpec;
-
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-
-public class ThreeDesUtil
+public final class ThreeDesUtil
 {
+    private ThreeDesUtil()
+    {
+
+    }
+
+    private static Logger logger = Logger.getLogger(ThreeDesUtil.class);
+
     /**
      * 算法名称
      */
@@ -52,12 +56,9 @@ public class ThreeDesUtil
     /**
      * CBC加密
      *
-     * @param key
-     *            密钥
-     * @param keyiv
-     *            IV
-     * @param data
-     *            明文
+     * @param key   密钥
+     * @param keyiv IV
+     * @param data  明文
      * @return Base64编码的密文
      * @throws Exception
      */
@@ -71,18 +72,15 @@ public class ThreeDesUtil
         byte[] bOut = cipher.doFinal(data);
         for (int k = 0; k < bOut.length; k++)
         {
-            System.out.print(bOut[k] + " ");
+            logger.info(bOut[k] + " ");
         }
-        System.out.println("");
         return bOut;
     }
 
     /**
-     *
      * 生成密钥key对象
      *
-     * @param KeyStr
-     *            密钥字符串
+     * @param keyStr 密钥字符串
      * @return 密钥对象
      * @throws InvalidKeyException
      * @throws NoSuchAlgorithmException
@@ -132,12 +130,9 @@ public class ThreeDesUtil
     /**
      * CBC解密
      *
-     * @param key
-     *            密钥
-     * @param keyiv
-     *            IV
-     * @param data
-     *            Base64编码的密文
+     * @param key   密钥
+     * @param keyiv IV
+     * @param data  Base64编码的密文
      * @return 明文
      * @throws Exception
      */

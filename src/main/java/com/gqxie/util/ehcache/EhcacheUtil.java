@@ -1,13 +1,10 @@
 package com.gqxie.util.ehcache;
 
-import com.gqxie.entity.TUser;
 import org.ehcache.Cache;
 import org.ehcache.CacheManager;
 import org.ehcache.config.builders.CacheConfigurationBuilder;
 import org.ehcache.config.builders.CacheManagerBuilder;
 import org.ehcache.config.builders.ResourcePoolsBuilder;
-
-import javax.xml.registry.infomodel.User;
 
 /**
  * 缓存
