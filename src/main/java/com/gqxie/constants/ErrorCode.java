@@ -8,7 +8,11 @@ public enum ErrorCode
 {
     RECORD_NOT_EXIST("9000101", "记录不存在"),
 
-    ACCOUONT_OR_PASSWORD_ERROR("9000102", "用户名或密码错误");
+    ACCOUONT_OR_PASSWORD_ERROR("9000102", "用户名或密码错误"),
+
+    RECORD_EXIST_ACCOUNT("9000103", "用户名已被占用"),
+
+    RECORD_EXIST_EMAIL("9000104", "邮箱已被占用");
 
     private String code;
 

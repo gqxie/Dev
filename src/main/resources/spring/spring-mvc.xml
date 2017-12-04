@@ -13,6 +13,17 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
+    <mvc:annotation-driven validator="validator"/>
+    <!--    bean级别的校验 方法中的参数bean必须添加@Valid注解，后面紧跟着BindingResult result参数-->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+    </bean>
+    <!--    方法级别的校验  要校验的方法所在类必须添加@Validated注解-->
+    <bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor">
+        <!-- 可以引用自己的 validator 配置，在本文中（下面）可以找到 validator 的参考配置，如果不指定则系统使用默认的 -->
+        <property name="validator" ref="validator"/>
+    </bean>
+
     <!-- 系统初始化 -->
     <bean id="systemInit" class="com.gqxie.common.SystemInit" init-method="init"></bean>
 

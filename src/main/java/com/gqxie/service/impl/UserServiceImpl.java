@@ -70,4 +70,22 @@ public class UserServiceImpl implements UserService
         result.setTarget(userList);
         return result;
     }
+
+    @Override
+    public List<TUser> findByAccount(String account)
+    {
+        TUserExample userExample = new TUserExample();
+        TUserExample.Criteria criteria = userExample.createCriteria();
+        criteria.andAccountEqualTo(account);
+        return userMapper.selectByExample(userExample);
+    }
+
+    @Override
+    public List<TUser> findByEmail(String email)
+    {
+        TUserExample userExample = new TUserExample();
+        TUserExample.Criteria criteria = userExample.createCriteria();
+        criteria.andEmailEqualTo(email);
+        return userMapper.selectByExample(userExample);
+    }
 }
