@@ -21,9 +21,9 @@
 8.travis
 
 9.java mail
+
+10.vue.js
  
  ## 待引入的框架及工具
-1.fast dfs
-
-2.vue.js
+1.七牛云存储
 
