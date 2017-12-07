@@ -27,3 +27,13 @@
  ## 待引入的框架及工具
 1.七牛云存储
 
+2.elasticsearch
+
+3.dubbo
+
+4.zookeeper
+
+5.hessian
+
+6.solr
+
