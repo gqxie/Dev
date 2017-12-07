@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns="http://java.sun.com/xml/ns/javaee"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-    id="WebApp_ID" version="3.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID" version="3.0">
     <display-name>Dev</display-name>
 
     <!-- Log4J Start -->
@@ -67,6 +66,15 @@
         <url-pattern>/druid/*</url-pattern>
     </servlet-mapping>
     <!-- 连接池 启用 Web 监控统计功能 end -->
+
+    <filter>
+        <filter-name>cors</filter-name>
+        <filter-class>com.gqxie.filter.SimpleCORSFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>cors</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
 
     <!-- Spring监听器 -->
     <listener>
