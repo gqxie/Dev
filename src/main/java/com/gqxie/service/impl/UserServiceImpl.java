@@ -11,10 +11,8 @@ import com.gqxie.entity.TUserExample;
 import com.gqxie.mapper.TUserMapper;
 import com.gqxie.service.UserService;
 import com.gqxie.util.ehcache.EhcacheUtil;
-import com.gqxie.util.email.EmailUtil;
 import com.gqxie.util.math.RandomUtil;
 import org.apache.log4j.Logger;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -61,10 +59,6 @@ public class UserServiceImpl implements UserService
         else
         {
             logger.info("user " + userList.get(0).getNickname() + " login success");
-            EmailVO emailVO = new EmailVO(EmailTypeEnum.LOGIN, "xieguoqiang@chezhibao.com", "测试主题test",
-                    "用户" + userList.get(0).getNickname() + "于" + DateTime.now().toString("yyyy-MM-dd HH:mm:ss")
-                            + "登录系统.");
-            emailMsgSender.sendEmail(emailVO);
             result.setMessage("登录成功，欢迎你：" + userList.get(0).getNickname());
             return result;
         }
@@ -118,7 +112,7 @@ public class UserServiceImpl implements UserService
         }
         String verifyCode = RandomUtil.getRandomNum(6);
         EhcacheUtil.getInstance().put(account, verifyCode);
-        EmailVO emailVO = new EmailVO(EmailTypeEnum.VERIFYCODE, email, "帐号注册验证码", "您的验证码是：" + verifyCode);
+        EmailVO emailVO = new EmailVO(EmailTypeEnum.VERIFY_CODE, email, "帐号注册验证码", "您的验证码是：" + verifyCode);
         emailMsgSender.sendEmail(emailVO);
         result.success();
         return result;
