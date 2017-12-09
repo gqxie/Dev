@@ -112,7 +112,7 @@ public class UserServiceImpl implements UserService
         }
         String verifyCode = RandomUtil.getRandomNum(6);
         EhcacheUtil.getInstance().put(account, verifyCode);
-        EmailVO emailVO = new EmailVO(EmailTypeEnum.VERIFY_CODE, email, "帐号注册验证码", "您的验证码是：" + verifyCode);
+        EmailVO emailVO = new EmailVO(EmailTypeEnum.VERIFYCODE, email, "帐号注册验证码", "您的验证码是：" + verifyCode);
         emailMsgSender.sendEmail(emailVO);
         result.success();
         return result;
