@@ -5,50 +5,189 @@
 
     <meta charset="utf-8">
     <title>Login</title>
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- CSS -->
     <link rel='stylesheet'
           href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
     <link rel="stylesheet" href="assets/css/reset.css">
-    <!--<link rel="stylesheet" href="assets/css/supersized.css">-->
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
 </head>
 
 <body>
 
-<div class="page-container flex">
-    <div class="container">
-        <h1>Login</h1>
-        <form action="user/login.do" method="post">
-            <input type="text" name="account" class="username"placeholder="account">
-            <input type="password" name="password" class="password" placeholder="Password">
-            <div class="register">立即注册</div>
-            <button class="pointer" type="submit">登录</button>
-            <div class="error">
-                <span>+</span>
-            </div>
-        </form>
+<div ng-app="project" ng-controller="myLogin" class="page-container flex">
+    <div class="container login-container" ng-show="loginShow">
+        <h1>登录</h1>
+        <div class="wrap">
+            <input type="text" name="account" ng-model="account" class="username"placeholder="account">
+            <input type="password" name="password" ng-model="password" class="password" placeholder="Password">
+            <div class="register" ng-click="toRegister()">还没账号？立即注册</div>
+            <div class="log-btn pointer" ng-click="login()">登录</div>
+        </div>
     </div>
-
+    <div class="container reg-container" ng-show="!loginShow">
+        <h1>注册</h1>
+        <div class="wrap" style="width: 406px;">
+            <div class="reg-name flex flex-center mb20">
+                <label class="reg-name-label">用户名:</label>
+                <input type="text" name="name" ng-model="reg_name" class="username mt0" placeholder="account">
+            </div>
+            <div class="reg-pwd flex flex-center mb20">
+                <label class="reg-name-label">新密码:</label>
+                <input type="password" name="password" ng-model="reg_pwd" class="password mt0" placeholder="Password">
+            </div>
+            <div class="reg-pwd flex flex-center mb20">
+                <label class="reg-name-label">昵称:</label>
+                <input type="text" name="nick_name" ng-model="reg_nick" class="password mt0" placeholder="nickName">
+            </div>
+            <div class="reg-name flex flex-center mb20">
+                <label class="reg-name-label">邮箱:</label>
+                <input type="text" name="name" ng-model="reg_email" class="email mt0" placeholder="1520704699@qq.com">
+            </div>
+            <div class="reg-name flex flex-center mb20">
+                <label class="reg-name-label">验证码:</label>
+                <input type="text" name="name" ng-model="reg_code" class="code mt0" placeholder="1122">
+                <span class="getCode" ng-click="getCode()" ng-if="!count_down">获取验证码</span>
+                <span class="getCode" ng-if="count_down">{{num}}</span>
+            </div>
+            <div class="register" ng-click="toRegister()">已有账号？立即登录</div>
+            <div class="reg-btn log-btn pointer" ng-click="register()">注册</div>
+        </div>
+    </div>
 </div>
 
 <!-- Javascript -->
-<script src="assets/js/jquery-1.8.2.min.js"></script>
-<!--<script src="assets/js/supersized.3.2.7.min.js"></script>-->
-<!--<script src="assets/js/supersized-init.js"></script>-->
-<script src="vue/vue.min.js"></script>
-<script src="assets/js/scripts.js"></script>
+<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script src="./assets/js/jquery-1.8.2.min.js"></script>
+<!--<script src="./assets/js/login.js"></script>-->
+<script>
+    var app = angular.module('project', []);
+    app.controller('myLogin', function( $scope, $http, $interval ) {
+        $scope.loginShow = true;
+        $scope.count_down = false;
+        $scope.num = '30';
+        $scope.login = function () {
+            var params = {
+                account: $scope.account,
+                password: $scope.password
+            }
 
+            if (!$scope.account || !$scope.password) {
+                alert('用户名或密码不能为空！');
+            } else {
+                var url = 'http://localhost:8090/Dev/user/login.do';
+                $http({
+                    method: 'GET',
+                    url: url,
+                    params: params
+                }).then(function (res) {
+                    console.log(res);
+                    if (res.data.errorCode == 0) {
+                        console.log(res.data.message);
+                        window.location.href = './components/homepage.html';
+                    } else {
+                        alert(res.data.message);
+                    }
+                })
+
+            }
+        },
+            $scope.toRegister = function () {
+                $scope.loginShow = !$scope.loginShow;
+            },
+            $scope.register = function(){
+                if( !$scope.reg_name ){
+                    alert('请填写用户名！');
+                    return false;
+                }
+                if( !$scope.reg_pwd ){
+                    alert('请输入密码');
+                    return false;
+                }
+                if( !$scope.reg_nick ){
+                    alert('请输入昵称');
+                    return false;
+                }
+//                if( $scope.reg_pwd && $scope.reg_new_pwd && $scope.reg_pwd != $scope.reg_new_pwd ){
+//                    alert('两次输入密码不一样，请重新输入');
+//                    $scope.reg_new_pwd = '';
+//                    return false;
+//                }
+                if( !$scope.reg_email ){
+                    alert('请输入注册邮箱！');
+                    return;
+                }
+               if( !$scope.reg_code ){
+                    alert('请输入验证码');
+                    return false;
+               }
+               var url = 'http://localhost:8090/Dev/user/register.do',
+                   params = {
+                       account : $scope.reg_name,
+                       pwd : $scope.reg_pwd,
+                       nickName : $scope.reg_nick,
+                       email : $scope.reg_email,
+                       verifyCode : $scope.reg_code
+                   }
+               $http({
+                   method : 'GET',
+                   url : url,
+                   params : params
+               }).then(function( res ){
+                   console.log(res);
+                   if(res && res.errorCode == 0 ){
+                       alert('注册成功！3秒后自动跳到登录页');
+                       $timeout(function(){
+                           window.location.href = './components/login.html';
+                       }, 2000)
+                   }
+               })
+
+            },
+            $scope.getCode = function(){
+                if( !$scope.reg_email ){
+                    alert('请填写验证邮箱');
+                    return;
+                }
+                if( !$scope.reg_name ){
+                    alert('请填写用户名');
+                    return;
+                }
+                var url = 'http://localhost:8090/Dev/user/sendVerifyCode.do',
+                    params = {
+                        account : $scope.reg_name,
+                        email : $scope.reg_email
+                    }
+                $http({
+                    method : 'GET',
+                    url : url,
+                    params : params
+                }).then(function( res ){
+                    console.log(res)
+                    if( res && res.data.errorCode == 0 ){
+                        console.log('验证码发送成功');
+                        $scope.count_down = true;
+                        var timer = $interval(function(){
+                            $scope.num --;
+                            if( $scope.num == 0 ){
+                                $scope.count_down = false;
+                                $interval.cancel($scope.timer)
+                            }
+                        },1000)
+                    }else{
+                        alert(res.data.message)
+                    }
+                })
+            }
+
+    })
+</script>
 </body>
 
 </html>

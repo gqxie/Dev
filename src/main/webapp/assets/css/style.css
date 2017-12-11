@@ -38,7 +38,7 @@ h1 {
     text-shadow: 0 1px 4px rgba(0,0,0,.2);
 }
 
-form {
+.wrap {
     position: relative;
     width: 305px;
     margin: 15px auto 0 auto;
@@ -62,7 +62,7 @@ input {
     box-shadow: 0 2px 3px 0 rgba(0,0,0,.1) inset;
     font-family: 'PT Sans', Helvetica, Arial, sans-serif;
     font-size: 14px;
-    color: #fff;
+    color: #333;
     text-shadow: 0 1px 2px rgba(0,0,0,.1);
     -o-transition: all .2s;
     -moz-transition: all .2s;
@@ -87,7 +87,8 @@ input:focus {
         0 2px 7px 0 rgba(0,0,0,.2);
 }
 
-button {
+.log-btn {
+    line-height: 44px;
     cursor: pointer;
     width: 300px;
     height: 44px;
@@ -108,7 +109,7 @@ button {
         0 15px 30px 0 rgba(255,255,255,.25) inset,
         0 2px 7px 0 rgba(0,0,0,.2);
     font-family: 'PT Sans', Helvetica, Arial, sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     color: #fff;
     text-shadow: 0 1px 2px rgba(0,0,0,.1);
@@ -118,7 +119,7 @@ button {
     -ms-transition: all .2s;
 }
 
-button:hover {
+.log-btn:hover {
     -moz-box-shadow:
         0 15px 30px 0 rgba(255,255,255,.15) inset,
         0 2px 7px 0 rgba(0,0,0,.2);
@@ -130,7 +131,7 @@ button:hover {
         0 2px 7px 0 rgba(0,0,0,.2);
 }
 
-button:active {
+.log-btn:active {
     -moz-box-shadow:
         0 15px 30px 0 rgba(255,255,255,.15) inset,
         0 2px 7px 0 rgba(0,0,0,.2);
@@ -196,5 +197,24 @@ button:active {
 
 .connect a:hover { background-position: center bottom; }
 .container{margin: auto;}
-.container .register{display:flex;color: #fff;font-size: 14px;cursor: pointer;width: 100%;height:30px;justify-content: flex-end;align-items: center;line-height: 30px;}
-
+.container .register{display:flex;color: #fff;font-size: 14px;margin-top: 5px;cursor: pointer;width: 100%;height:30px;justify-content: flex-end;align-items: center;line-height: 30px;}
+.reg-container .reg-name-label{flex-shrink: 0;margin-right: 10px;}
+.getCode{
+    width: 60px;
+    flex-shrink: 0;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    border: 1px solid rgba(252,142,38, 0.5);
+    color: rgba(252,142,38, 0.5);
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 0 5px;
+}
+.reg-name-label{
+    flex-shrink: 0!important;
+    margin-right: 20px!important;
+    width: 90px;
+    text-align: right;
+}
+.reg-btn{margin-left: 110px;}
