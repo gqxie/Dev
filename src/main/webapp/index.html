@@ -25,7 +25,7 @@
     <div class="container login-container" ng-show="loginShow">
         <h1>登录</h1>
         <div class="wrap">
-            <input type="text" name="account" ng-model="account" class="username"placeholder="account">
+            <input type="text" name="account" ng-model="account" class="username" placeholder="account">
             <input type="password" name="password" ng-model="password" class="password" placeholder="Password">
             <div class="register" ng-click="toRegister()">还没账号？立即注册</div>
             <div class="log-btn pointer" ng-click="login()">登录</div>
@@ -39,7 +39,7 @@
                 <input type="text" name="name" ng-model="reg_name" class="username mt0" placeholder="account">
             </div>
             <div class="reg-pwd flex flex-center mb20">
-                <label class="reg-name-label">新密码:</label>
+                <label class="reg-name-label">密码:</label>
                 <input type="password" name="password" ng-model="reg_pwd" class="password mt0" placeholder="Password">
             </div>
             <div class="reg-pwd flex flex-center mb20">
@@ -67,8 +67,9 @@
 <script src="./assets/js/jquery-1.8.2.min.js"></script>
 <!--<script src="./assets/js/login.js"></script>-->
 <script>
+    var serverUrl = 'http://' + window.location.hostname + ':' + window.location.port;
     var app = angular.module('project', []);
-    app.controller('myLogin', function( $scope, $http, $interval ) {
+    app.controller('myLogin', function ($scope, $http, $interval) {
         $scope.loginShow = true;
         $scope.count_down = false;
         $scope.num = '30';
@@ -81,7 +82,7 @@
             if (!$scope.account || !$scope.password) {
                 alert('用户名或密码不能为空！');
             } else {
-                var url = 'http://localhost:8090/Dev/user/login.do';
+                var url = serverUrl + '/Dev/user/login.do';
                 $http({
                     method: 'GET',
                     url: url,
@@ -101,86 +102,81 @@
             $scope.toRegister = function () {
                 $scope.loginShow = !$scope.loginShow;
             },
-            $scope.register = function(){
-                if( !$scope.reg_name ){
+            $scope.register = function () {
+                if (!$scope.reg_name) {
                     alert('请填写用户名！');
                     return false;
                 }
-                if( !$scope.reg_pwd ){
+                if (!$scope.reg_pwd) {
                     alert('请输入密码');
                     return false;
                 }
-                if( !$scope.reg_nick ){
+                if (!$scope.reg_nick) {
                     alert('请输入昵称');
                     return false;
                 }
-//                if( $scope.reg_pwd && $scope.reg_new_pwd && $scope.reg_pwd != $scope.reg_new_pwd ){
-//                    alert('两次输入密码不一样，请重新输入');
-//                    $scope.reg_new_pwd = '';
-//                    return false;
-//                }
-                if( !$scope.reg_email ){
+                if (!$scope.reg_email) {
                     alert('请输入注册邮箱！');
                     return;
                 }
-               if( !$scope.reg_code ){
+                if (!$scope.reg_code) {
                     alert('请输入验证码');
                     return false;
-               }
-               var url = 'http://localhost:8090/Dev/user/register.do',
-                   params = {
-                       account : $scope.reg_name,
-                       pwd : $scope.reg_pwd,
-                       nickName : $scope.reg_nick,
-                       email : $scope.reg_email,
-                       verifyCode : $scope.reg_code
-                   }
-               $http({
-                   method : 'GET',
-                   url : url,
-                   params : params
-               }).then(function( res ){
-                   console.log(res);
-                   if(res && res.errorCode == 0 ){
-                       alert('注册成功！3秒后自动跳到登录页');
-                       $timeout(function(){
-                           window.location.href = './components/login.html';
-                       }, 2000)
-                   }
-               })
+                }
+                var url = serverUrl + '/Dev/user/register.do',
+                    params = {
+                        account: $scope.reg_name,
+                        pwd: $scope.reg_pwd,
+                        nickName: $scope.reg_nick,
+                        email: $scope.reg_email,
+                        verifyCode: $scope.reg_code
+                    }
+                $http({
+                    method: 'GET',
+                    url: url,
+                    params: params
+                }).then(function (res) {
+                    console.log(res);
+                    if (res && res.errorCode == 0) {
+                        alert('注册成功！3秒后自动跳到登录页');
+                        $timeout(function () {
+                            window.location.href = './components/login.html';
+                        }, 2000)
+                    }
+                })
 
             },
-            $scope.getCode = function(){
-                if( !$scope.reg_email ){
+            $scope.getCode = function () {
+                if (!$scope.reg_email) {
                     alert('请填写验证邮箱');
                     return;
                 }
-                if( !$scope.reg_name ){
+                if (!$scope.reg_name) {
                     alert('请填写用户名');
                     return;
                 }
-                var url = 'http://localhost:8090/Dev/user/sendVerifyCode.do',
+                var url = serverUrl + '/Dev/user/sendVerifyCode.do',
                     params = {
-                        account : $scope.reg_name,
-                        email : $scope.reg_email
+                        account: $scope.reg_name,
+                        email: $scope.reg_email
                     }
                 $http({
-                    method : 'GET',
-                    url : url,
-                    params : params
-                }).then(function( res ){
+                    method: 'GET',
+                    url: url,
+                    params: params
+                }).then(function (res) {
                     console.log(res)
-                    if( res && res.data.errorCode == 0 ){
+                    if (res && res.data.errorCode == 0) {
                         console.log('验证码发送成功');
                         $scope.count_down = true;
-                        var timer = $interval(function(){
-                            $scope.num --;
-                            if( $scope.num == 0 ){
+                        var timer = $interval(function () {
+                            $scope.num--;
+                            if ($scope.num == 0) {
                                 $scope.count_down = false;
                                 $interval.cancel($scope.timer)
                             }
-                        },1000)
-                    }else{
+                        }, 1000)
+                    } else {
                         alert(res.data.message)
                     }
                 })
