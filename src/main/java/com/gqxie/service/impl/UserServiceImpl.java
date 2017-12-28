@@ -15,6 +15,7 @@ import com.gqxie.util.math.RandomUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -65,6 +66,8 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
+    @Cacheable("getUserByID")
+    //@CacheEvict(value = { "getUserByID", "searchCity" }, allEntries = true)
     public Object getUserByID(Integer id)
     {
         Result<List<TUser>> result = new Result<>();
@@ -116,5 +119,16 @@ public class UserServiceImpl implements UserService
         emailMsgSender.sendEmail(emailVO);
         result.success();
         return result;
+    }
+
+    @Override
+    public String findUserById(int userId)
+    {
+        logger.debug("---------UserManagerImpl.findUserById()--------");
+        if (userId <= 0)
+        {
+            throw new IllegalArgumentException("该用户不存在!");
+        }
+        return "张三";
     }
 }

@@ -12,12 +12,16 @@ import com.gqxie.service.UserService;
 import com.gqxie.util.ehcache.EhcacheUtil;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 @RequestMapping("/user")
 @Controller
@@ -26,6 +30,9 @@ public class UserController
 {
     @Autowired
     UserService userService;
+
+    @Resource(name = "redisTemplate")
+    ValueOperations valueOperations;
 
     /**
      * 用户登录
@@ -83,6 +90,37 @@ public class UserController
     @ResponseBody
     public Object sendVerifyCode(String account, String email)
     {
-        return userService.sendVerifyCode(account,email);
+        return userService.sendVerifyCode(account, email);
+    }
+
+    /**
+     * aop测试
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping("/findUserById")
+    @ResponseBody
+    public Object findUserById()
+    {
+        userService.findUserById(1);
+
+        try
+        {
+            userService.findUserById(0);
+        }
+        catch (Exception e)
+        {
+        }
+
+        return "hello";
+    }
+
+    @RequestMapping("/testRedis")
+    @ResponseBody
+    public Object testRedis()
+    {
+        valueOperations.set("a", "1", 5, TimeUnit.MINUTES);
+        return valueOperations.get("a");
     }
 }

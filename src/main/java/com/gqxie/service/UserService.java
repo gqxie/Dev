@@ -52,4 +52,6 @@ public interface UserService
      * 发送验证码
      */
     Object sendVerifyCode(String account, String email);
+
+    String findUserById(int userId);
 }

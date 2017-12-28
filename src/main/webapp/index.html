@@ -137,7 +137,7 @@
                     params: params
                 }).then(function (res) {
                     console.log(res);
-                    if (res && res.errorCode == 0) {
+                    if (res && res.data.errorCode == 0) {
                         alert('注册成功！3秒后自动跳到登录页');
                         $timeout(function () {
                             window.location.href = './components/login.html';

@@ -31,9 +31,7 @@ public class ActivemqController
      */
     @ResponseBody
     @RequestMapping("/queueSender")
-    public String queueSender(
-            @RequestParam("message")
-                    String message)
+    public String queueSender(@RequestParam("message") String message)
     {
         String opt = "";
         try
@@ -56,9 +54,7 @@ public class ActivemqController
      */
     @ResponseBody
     @RequestMapping("/topicSender")
-    public String topicSender(
-            @RequestParam("message")
-                    String message)
+    public String topicSender(@RequestParam("message") String message)
     {
         String opt = "";
         try

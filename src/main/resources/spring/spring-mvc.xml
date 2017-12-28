@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc" xsi:schemaLocation="http://www.springframework.org/schema/beans
-                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd  
-                        http://www.springframework.org/schema/context  
-                        http://www.springframework.org/schema/context/spring-context-3.1.xsd  
-                        http://www.springframework.org/schema/mvc  
-                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+                        http://www.springframework.org/schema/mvc
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                        http://www.springframework.org/schema/aop
+                        http://www.springframework.org/schema/aop/spring-aop.xsd
+                        ">
     <!-- 指定Sping组件扫描的基本包路径 -->
     <context:component-scan base-package="com.gqxie.controller">
         <!-- 这里只扫描Controller，不可重复加载Service -->
@@ -77,5 +81,17 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
+
+    <bean id="xmlHandler" class="com.gqxie.common.XMLAdvice"/>
+    <aop:config>
+        <aop:aspect id="aspect" ref="xmlHandler">
+            <aop:pointcut id="pointUserMgr" expression="execution(* com.gqxie.service.*.find*(..))"/>
+            <aop:before method="doBefore" pointcut-ref="pointUserMgr"/>
+            <aop:after method="doAfter" pointcut-ref="pointUserMgr"/>
+            <aop:around method="doAround" pointcut-ref="pointUserMgr"/>
+            <aop:after-returning method="doReturn" pointcut-ref="pointUserMgr"/>
+            <aop:after-throwing method="doThrowing" throwing="ex" pointcut-ref="pointUserMgr"/>
+        </aop:aspect>
+    </aop:config>
 
 </beans>
