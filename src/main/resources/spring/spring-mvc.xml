@@ -11,6 +11,9 @@
                         http://www.springframework.org/schema/aop
                         http://www.springframework.org/schema/aop/spring-aop.xsd
                         ">
+    <!-- 启用AspectJ对Annotation的支持 -->
+    <aop:aspectj-autoproxy/>
+
     <!-- 指定Sping组件扫描的基本包路径 -->
     <context:component-scan base-package="com.gqxie.controller">
         <!-- 这里只扫描Controller，不可重复加载Service -->
@@ -82,7 +85,11 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <bean id="xmlHandler" class="com.gqxie.common.XMLAdvice"/>
+    <!-- aop注解配置，与上面的日期类型转换配置冲突 -->
+    <!--<bean id="aspcejHandler" class="com.gqxie.common.AspcetJAdvice"/>-->
+
+    <!-- xml配置方式aop -->
+    <!--<bean id="xmlHandler" class="com.gqxie.common.XMLAdvice"/>
     <aop:config>
         <aop:aspect id="aspect" ref="xmlHandler">
             <aop:pointcut id="pointUserMgr" expression="execution(* com.gqxie.service.*.find*(..))"/>
@@ -92,6 +99,6 @@
             <aop:after-returning method="doReturn" pointcut-ref="pointUserMgr"/>
             <aop:after-throwing method="doThrowing" throwing="ex" pointcut-ref="pointUserMgr"/>
         </aop:aspect>
-    </aop:config>
+    </aop:config>-->
 
 </beans>
