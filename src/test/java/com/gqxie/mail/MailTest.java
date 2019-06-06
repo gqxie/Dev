@@ -39,7 +39,7 @@ public class MailTest
         MimeMessage message = new MimeMessage(mailSession);
         InternetAddress form = new InternetAddress(props.getProperty("mail.user"));
         message.setFrom(form);
-        InternetAddress to = new InternetAddress("xieguoqiang@chezhibao.com");
+        InternetAddress to = new InternetAddress("xieguoqiang@test.com");
         message.setRecipient(MimeMessage.RecipientType.TO, to);
         // 设置邮件标题
         message.setSubject("测试邮件");
